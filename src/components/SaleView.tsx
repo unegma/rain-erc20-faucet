@@ -2,7 +2,6 @@ import NavBar from "./NavBar";
 import Modal from "./Modal";
 import {Canvas} from "@react-three/fiber";
 import React, {Suspense} from "react";
-import Shoes from "./Shoes";
 import {Environment, OrbitControls} from "@react-three/drei";
 
 type saleViewProps = {
@@ -34,15 +33,6 @@ export default function SaleView({
           consoleColor={consoleColor}
         />
 
-        <Canvas camera={{ position: [0, 0, 20], fov: 50 }} performance={{ min: 0.1 }}>
-          <ambientLight intensity={0.5} />
-          <directionalLight intensity={0.3} position={[5, 25, 20]} />
-          <Suspense fallback={null}>
-            <Shoes modalOpen={modalOpen} setModalOpen={setModalOpen} amount={redeemableInitialSupply} />
-            <Environment preset="city" />
-          </Suspense>
-          <OrbitControls autoRotate autoRotateSpeed={1} />
-        </Canvas>
       </div>
     </>
   )

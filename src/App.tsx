@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {BigNumberish, BytesLike, ethers, Signer} from "ethers";
+import {ethers, Signer} from "ethers";
 import * as rainSDK from "rain-sdk";
 import { connect } from "./connect.js"; // a very basic web3 connection implementation
 import { opcodeData } from "./opcodeData.js";
 import {CircularProgress} from "@mui/material";
 import AdminPanelView from "./components/AdminPanelView";
 import SaleView from "./components/SaleView";
-import {ERC20Config} from "rain-sdk/src/classes/rainContract";
-import {StateConfig} from "rain-sdk/src/classes/vm";
 
 const DESIRED_UNITS_OF_REDEEMABLE = 1; // this could be entered dynamically by user, but we are limiting to 1
 
