@@ -187,53 +187,27 @@ function App() {
    * Called within the modal for making a buy
    * THIS MUST NOT BE SHOWN BEFORE getSaleData() HAS FINISHED OR THE DATA WILL BE FROM .ENV
    */
-  async function initiateBuy() {
-    // setButtonLock(true);
-    // setLoading(true);
+  async function initiateClaim() {
+    setButtonLock(true);
+    setLoading(true);
     //
-    // try {
-    //   // @ts-ignore
-    //   const reserveContract = new rainSDK.ERC20(reserveTokenAddress, signer);
-    //   // @ts-ignore
-    //   const saleContract = new rainSDK.Sale(saleAddress, signer);
-    //
-    //   // approval
-    //   console.log(`Info: Connecting to Reserve token for approval of spend of ${staticReservePriceOfRedeemable}${reserveSymbol}:`, reserveTokenAddress); // this will have been gotten dynamically in getSaleData()
-    //
-    //   // todo maybe create a toBigNumber() function instead of putting ethers everywhere
-    //   const approveTransaction = await reserveContract.approve(saleContract.address, ethers.utils.parseUnits(staticReservePriceOfRedeemable.toString(), parseInt(reserveDecimals)));
-    //   const approveReceipt = await approveTransaction.wait();
-    //   console.log(`Info: Approve Receipt:`, approveReceipt);
-    //   console.log('------------------------------'); // separator
-    //
-    //   console.log(`Info: Price of tokens in the Sale: ${staticReservePriceOfRedeemable}${await reserveContract.symbol()} (${reserveContract.address})`);
-    //
-    //   const buyConfig = {
-    //     feeRecipient: address,
-    //     fee: ethers.utils.parseUnits("0", parseInt(reserveDecimals)), // TODO DOES DECIMALS NEED CONVERTING TO INT? // fee to be taken by the frontend
-    //     minimumUnits: ethers.utils.parseUnits(DESIRED_UNITS_OF_REDEEMABLE.toString(), parseInt(redeemableDecimals)), // this will cause the sale to fail if there are (DESIRED_UNITS - remainingUnits) left in the sale
-    //     desiredUnits: ethers.utils.parseUnits(DESIRED_UNITS_OF_REDEEMABLE.toString(), parseInt(redeemableDecimals)),
-    //     maximumPrice: ethers.constants.MaxUint256, // this is for preventing slippage (for static price curves, this isn't really needed and can be set to the same as staticPrice) // todo is this better as STATIC_RESERVE_PRICE_OF_REDEEMABLE?
-    //   }
-    //
-    //   console.log(`Info: Buying ${DESIRED_UNITS_OF_REDEEMABLE}${redeemableSymbol} from Sale with parameters:`, buyConfig);
-    //   const buyStatusTransaction = await saleContract.buy(buyConfig);
-    //   const buyStatusReceipt = await buyStatusTransaction.wait();
-    //   console.log(`Info: Buy Receipt:`, buyStatusReceipt);
-    //   console.log('------------------------------'); // separator
-    //
+    try {
+      // @ts-ignore
+      const emissionsErc20 = new rainSDK.EmissionsERC20(tokenAddress, signer);
+
+
     //   setConsoleData(`Complete! You can view the ${redeemableSymbol} in your wallet by adding: ${redeemableTokenAddress}`);
     //   setConsoleColor(`green`); // todo add to struct
     //   setSaleComplete(true);
     //   setButtonLock(false);
     //   setLoading(false);
-    // } catch(err) {
-      // setLoading(false);
-      // setButtonLock(false);
-      // setConsoleData(`Sale Failed (Check console for more data).`);
-      // setConsoleColor(`red`); // todo add to struct
-      // console.log(`Info: Something went wrong:`, err);
-    // }
+    } catch(err) {
+      setLoading(false);
+      setButtonLock(false);
+      setConsoleData(`Claim Failed (Check console for more data).`);
+      setConsoleColor(`red`); // todo add to struct
+      console.log(`Info: Something went wrong:`, err);
+    }
   }
 
   /** Various **/
