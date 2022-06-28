@@ -34,6 +34,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [adminConfigPage, setAdminConfigPage] = useState(0);
   const [faucetView, setFaucetView] = React.useState(false); // show sale or admin view (if there is a sale address in the url)
+  const [showFaucet, setShowFaucet] = React.useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
 
   // all these from .env will be replaced by calls to blockchain within the getTokenData function when faucetView is set to true
@@ -118,102 +119,68 @@ function App() {
    */
   async function getTokenData() {
     try {
-      // // @ts-ignore
-      // const tokenContract = new rainSDK.Sale(saleAddress, signer);
-      // console.log(saleContract);
-      //
+      // @ts-ignore
+      const tokenContract = new rainSDK.EmissionsERC20(tokenAddress, signer);
+      console.log(tokenContract);
+
       // setReserveTokenAddress(reserve.address);
-      // setReserveName(await reserve.name());
-      // setReserveSymbol(await reserve.symbol());
-      // setRedeemableTokenAddress(redeemable.address);
-      // setRedeemableName(await redeemable.name());
-      // setRedeemableSymbol(await redeemable.symbol())
-      // setRedeemableDecimals((await redeemable.decimals()).toString());
-      //
-      // // unnecessary, but here for reference // TODO ADD A SALE TIMEOUT INDICATOR AND A PRICE GETTER
-      // // setRedeemableWalletCap(process.env.REACT_APP_REDEEMABLE_WALLET_CAP);
-      // // setStaticReservePriceOfRedeemable(saleContract.calculatePrice(process.env.REACT_APP_REDEEMABLE_WALLET_CAP)); // should be desired units
-      // // setSaleTimeoutInBlocks(process.env.REACT_APP_SALE_TIMEOUT_IN_BLOCKS);
-      //
-      // const amountOfShoesBN = await redeemable.totalSupply();
-      // const amountOfShoesDecimals = await redeemable.decimals();
-      // const amountOfShoes = parseInt(amountOfShoesBN.toString()) / 10 ** amountOfShoesDecimals;
+      setReserveName(await tokenContract.name());
+      setReserveSymbol(await tokenContract.symbol());
+      setReserveDecimals((await tokenContract.decimals()).toString());
+
       // console.log(`Shoes in Sale: ${amountOfShoes}`); // todo check if this changes when they are bought
       // setRedeemableInitialSupply(amountOfShoes.toString()); // TODO THIS SHOULD BE REMAINING SHOES NOT TOTAL SUPPLY
-      //
-      // // todo this will cause a giant number if signer has more than the walletcap
-      // const priceOfRedeemableInUnitsOfReserve = await saleContract.calculatePrice(DESIRED_UNITS_OF_REDEEMABLE); // THIS WILL CALCULATE THE PRICE FOR **YOU** AND WILL TAKE INTO CONSIDERATION THE WALLETCAP, if the user's wallet cap is passed, the price will be so high that the user can't buy the token (you will see a really long number as the price)
-      // let readablePrice = (parseInt(priceOfRedeemableInUnitsOfReserve.toString())/(10**parseInt(redeemableDecimals))).toString();
-      // setStaticReservePriceOfRedeemable(readablePrice);
-      // console.log(`Price for you: ${readablePrice}`);
-      //
-      // // @ts-ignore
-      // setShowShoes(true);
+
+      setShowFaucet(true);
     } catch(err) {
-      console.log('Error getting sale data', err);
+      console.log('Error getting token data', err);
     }
   }
 
   /**
    * Deploy a Sale and Start it (2txs)
    */
-  async function deploySale() {
+  async function deployToken() {
     setButtonLock(true);
     setLoading(true);
-    //
-    // const saleConfig = {
-    //   canStartStateConfig: opcodeData.canStartStateConfig, // config for the start of the Sale (see opcodes section below)
-    //   canEndStateConfig: opcodeData.canEndStateConfig, // config for the end of the Sale (see opcodes section below)
-    //   calculatePriceStateConfig: opcodeData.calculatePriceStateConfig(
-    //     ethers.utils.parseUnits(staticReservePriceOfRedeemable, parseInt(reserveDecimals)),
-    //     ethers.utils.parseUnits(redeemableWalletCap, parseInt(redeemableDecimals)),
-    //   ), // config for the `calculatePrice` function (see opcodes section below).
-    //   recipient: address, // who will receive the RESERVE token (e.g. USDCC) after the Sale completes
-    //   reserve: reserveTokenAddress, // the reserve token contract address (MUMBAI MATIC in this case)
-    //   saleTimeout: saleTimeoutInBlocks,
-    //   cooldownDuration: 100, // this will be 100 blocks (10 mins on MUMBAI) // this will stay as blocks in upcoming releases
-    //   // USING THE REDEEMABLE_INITIAL_SUPPLY HERE BECAUSE WE HAVE CONFIGURED 1 REDEEMABLE TO COST 1 RESERVE
-    //   minimumRaise: ethers.utils.parseUnits(redeemableInitialSupply, reserveDecimals), // minimum to complete a Raise // TODO CHECK IF FINISHES AUTOMATICALLY WHEN HIT
-    //   dustSize: ethers.utils.parseUnits("0", reserveDecimals), // todo check this: for bonding curve price curves (that generate a few left in the contract at the end)
-    // };
-    // const redeemableConfig = {
-    //   // todo can erc721 be used instead?
-    //   erc20Config: { // config for the redeemable token (rTKN) which participants will get in exchange for reserve tokens
-    //     name: redeemableName, // the name of the rTKN
-    //     symbol: redeemableSymbol, // the symbol for your rTKN
-    //     distributor: "0x0000000000000000000000000000000000000000", // distributor address
-    //     initialSupply: ethers.utils.parseUnits(redeemableInitialSupply, redeemableDecimals), // initial rTKN supply
-    //   },
-    //   // todo why can't I decompile? https://mumbai.polygonscan.com/address/0xC064055DFf6De32f44bB7cCB0ca59Cbd8434B2de#code
-    //   tier: "0xC064055DFf6De32f44bB7cCB0ca59Cbd8434B2de", // tier contract address (used for gating)
-    //   minimumTier: 0, // minimum tier a user needs to take part
-    //   distributionEndForwardingAddress: "0x0000000000000000000000000000000000000000" // the rTKNs that are not sold get forwarded here (0x00.. will burn them)
-    // }
-    //
-    // try {
-    //   console.log("Info: Creating Sale with the following state:", saleConfig, redeemableConfig);
-    //   // @ts-ignore
-    //   const saleContract = await rainSDK.Sale.deploy(signer, saleConfig, redeemableConfig);
-    //   console.log('Result: Sale Contract:', saleContract); // the Sale contract and corresponding address
-    //   const redeemableContract = await saleContract.getRedeemable();
-    //   console.log('Result: Redeemable Contract:', redeemableContract); // the Sale contract and corresponding address
-    //   console.log('------------------------------'); // separator
-    //
-    //   // ### Interact with the newly deployed ecosystem
-    //
-    //   console.log('Info: Starting The Sale.');
-    //   const startStatusTransaction = await saleContract.start();
-    //   const startStatusReceipt = await startStatusTransaction.wait();
-    //   console.log('Info: Sale Started Receipt:', startStatusReceipt);
-    //   console.log('------------------------------'); // separator
-    //
-    //   console.log(`Redirecting to Sale: ${saleContract.address}`);
-    //   window.location.replace(`${window.location.origin}?s=${saleContract.address}`);
-    // } catch (err) {
-    //   console.log(err);
-    //   setLoading(false);
-    //   alert('Failed Deployment, please start again or manually activate start() if the Sale deployed.');
-    // }
+
+    const emissionsERC20Config = {
+      allowDelegatedClaims: false, // can mint on behalf of someone else
+      erc20Config: {
+        name: reserveName,
+        symbol: reserveSymbol,
+        distributor: address, // initialSupply is given to the distributor during the deployment of the emissions contract
+        initialSupply: ethers.utils.parseUnits(reserveInitialSupply, reserveDecimals),
+      },
+      vmStateConfig: {
+        constants: [reserveInitialSupply], // mint a set amount at a time (infinitely), if set to 10, will mint 10 at a time, no more no less (infinitely)
+        sources: [
+          ethers.utils.concat([
+            rainSDK.utils.op(rainSDK.Sale.Opcodes.VAL, 0),
+          ]),
+        ],
+        stackLength: 1,
+        argumentsLength: 0,
+      },
+    };
+
+    try {
+      console.log(`Deploying and Minting ERC20 Token with the following parameters:`, emissionsERC20Config);
+      // @ts-ignore
+      const emissionsErc20 = await rainSDK.EmissionsERC20.deploy(signer, emissionsERC20Config);
+      // // todo claim function will mint another token (in addition to initial supply)??
+      const emissionsERC20Address = emissionsErc20.address;
+      console.log(`Result: deployed emissionsErc20, with address: ${emissionsERC20Address} and sent you ${reserveInitialSupply} tokens.`, emissionsErc20);
+      console.log('Info: to see the tokens in your Wallet, add a new token with the address above. ALSO, REMEMBER TO NOTE DOWN THIS ADDRESS, AS IT WILL BE USED AS RESERVE_TOKEN IN FUTURE TUTORIALS.');
+
+      console.log(`Redirecting to Token Faucet: ${emissionsERC20Address}`);
+      window.location.replace(`${window.location.origin}?t=${emissionsERC20Address}`);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      // todo set button lock?
+      alert('Failed Deployment.');
+    }
   }
 
   /**
@@ -287,11 +254,11 @@ function App() {
         />
       )}
 
-      {/*{ faucetView && (*/}
-      {/*  <SaleView*/}
-      {/*    // redeemableName={redeemableName} redeemableSymbol={redeemableSymbol} modalOpen={modalOpen}*/}
-      {/*/>*/}
-      {/*)}*/}
+      { faucetView && (
+        <SaleView
+          // redeemableName={redeemableName} redeemableSymbol={redeemableSymbol} modalOpen={modalOpen}
+      />
+      )}
 
     </div>
   );
