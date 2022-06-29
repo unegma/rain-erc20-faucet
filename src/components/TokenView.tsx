@@ -6,13 +6,15 @@ import {ContactShadows, Environment, OrbitControls} from "@react-three/drei";
 import Faucet from "./Faucet";
 
 type tokenViewProps = {
+  reserveName: string, reserveSymbol: string, modalOpen: any, setModalOpen: any, reserveInitialSupply: any
   // redeemableName: any, redeemableSymbol: any, modalOpen: any, setModalOpen: any, initiateBuy: any, buttonLock: any,
   // redeemableTokenAddress: any, staticReservePriceOfRedeemable: any, reserveSymbol: any, consoleData: any,
   // consoleColor: any, redeemableInitialSupply: any
 }
 
 export default function TokenView({
-    // redeemableName, redeemableSymbol, modalOpen, setModalOpen, initiateBuy, buttonLock, redeemableTokenAddress,
+    reserveName, reserveSymbol, modalOpen, setModalOpen, reserveInitialSupply
+    // initiateBuy, buttonLock, tokenAddress,
     // staticReservePriceOfRedeemable, reserveSymbol, consoleData, consoleColor, redeemableInitialSupply
   }: tokenViewProps )
 {

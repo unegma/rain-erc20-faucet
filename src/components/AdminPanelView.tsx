@@ -26,22 +26,24 @@ ChartJS.register(
   Legend
 );
 
-const displayedImage = 'https://assets.unegma.net/unegma.work/rain-shoe-sale.unegma.work/shoe-voucher.jpg'
+// const displayedImage = 'https://assets.unegma.net/unegma.work/rain-shoe-sale.unegma.work/shoe-voucher.jpg'
 
 type adminPanelProps = {
-  // adminConfigPage: number, reserveTokenAddress: string,
-  // handleChangeReserveTokenAddress: any, staticReservePriceOfRedeemable: any,
-  // handleChangeStaticReservePriceOfRedeemable: any, saleTimeoutInBlocks: any, handleChangeSaleTimeout: any,
-  // resetToDefault: any, setAdminConfigPage: any, redeemableName: any, handleChangeRedeemableName: any,
-  // redeemableSymbol: any, handleChangeRedeemableSymbol: any, redeemableInitialSupply: any,
-  // handleChangeRedeemableInitialSupply: any, buttonLock: any, deploySale: any
+  adminConfigPage: number
+  reserveName: string, handleChangeReserveName: any,
+  reserveSymbol: string, handleChangeReserveSymbol: any,
+  reserveInitialSupply: any, handleChangeReserveInitialSupply: any,
+  resetToDefault: any, setAdminConfigPage: any,
+  buttonLock: any, deployToken: any
 }
 
 export default function AdminPanelView({
-    // adminConfigPage, reserveTokenAddress, handleChangeReserveTokenAddress, staticReservePriceOfRedeemable,
-    // handleChangeStaticReservePriceOfRedeemable, saleTimeoutInBlocks, handleChangeSaleTimeout, resetToDefault,
-    // setAdminConfigPage, redeemableName, handleChangeRedeemableName, redeemableSymbol, handleChangeRedeemableSymbol,
-    // redeemableInitialSupply, handleChangeRedeemableInitialSupply, buttonLock, deploySale
+  adminConfigPage,
+  reserveName, handleChangeReserveName,
+  reserveSymbol, handleChangeReserveSymbol,
+  reserveInitialSupply, handleChangeReserveInitialSupply,
+  resetToDefault, setAdminConfigPage,
+  buttonLock, deployToken
   } : adminPanelProps)
 {
 
@@ -61,7 +63,7 @@ export default function AdminPanelView({
   };
 
   const data = {
-    labels: ['Tx1: Deploy Sale', 'Tx2: Start Sale'],
+    labels: ['Tx1: Deploy Token'],
     datasets: [
       {
         label: '',
@@ -104,116 +106,74 @@ export default function AdminPanelView({
 
         {/*<img hidden={!(adminConfigPage !== 2)} className="mainImage" src={displayedImage} alt="#" />*/}
 
-        {/*{ adminConfigPage === 0 && (*/}
-        {/*  <>*/}
+        { adminConfigPage === 0 && (
+          <>
+            <Typography variant="h5" component="h3" color="black">
+              (Page 1/2)
+            </Typography>
 
-        {/*    <Typography variant="h5" component="h3" color="black">*/}
-        {/*      (Page 1/3)*/}
-        {/*    </Typography>*/}
-
-        {/*    <FormControl variant="standard">*/}
-        {/*      <InputLabel className="input-box-label" htmlFor="component-helper">The Token (e.g. USDC) for buying Vouchers</InputLabel>*/}
-        {/*      <Input*/}
-        {/*        id="component-helper"*/}
-        {/*        value={reserveTokenAddress}*/}
-        {/*        onChange={handleChangeReserveTokenAddress}*/}
-        {/*      />*/}
-        {/*    </FormControl>*/}
-
-        {/*    <FormControl variant="standard">*/}
-        {/*      <InputLabel className="input-box-label" htmlFor="component-helper">The Price (in USDC) of a Voucher</InputLabel>*/}
-        {/*      <Input*/}
-        {/*        id="component-helper"*/}
-        {/*        value={staticReservePriceOfRedeemable}*/}
-        {/*        onChange={handleChangeStaticReservePriceOfRedeemable}*/}
-        {/*      />*/}
-        {/*    </FormControl>*/}
-
-        {/*    /!*todo add some validation for max*!/*/}
-        {/*    <FormControl variant="standard">*/}
-        {/*      <InputLabel className="input-box-label" htmlFor="component-helper">Sale Duration (Matic Mumbai: 600 blocks is 60mins)</InputLabel>*/}
-        {/*      <Input*/}
-        {/*        id="component-helper"*/}
-        {/*        value={saleTimeoutInBlocks}*/}
-        {/*        onChange={handleChangeSaleTimeout}*/}
-        {/*      />*/}
-        {/*    </FormControl>*/}
-
-        {/*    <div className="buttons-box">*/}
-        {/*      <Button className="fifty-percent-button" variant="outlined" onClick={() => {resetToDefault()}}>Reset</Button>*/}
-        {/*      <Button className="fifty-percent-button" variant="contained" onClick={() => {setAdminConfigPage(adminConfigPage+1)}}>Next</Button>*/}
-        {/*    </div>*/}
-        {/*  </>*/}
-        {/*)}*/}
-
-        {/*{ adminConfigPage === 1 && (*/}
-        {/*  <>*/}
-        {/*    <Typography variant="h5" component="h3" color="black">*/}
-        {/*      (Page 2/3)*/}
-        {/*    </Typography>*/}
-
-        {/*    <FormControl variant="standard">*/}
-        {/*      <InputLabel className="input-box-label" htmlFor="component-helper">Shoe Collection Name</InputLabel>*/}
-        {/*      <Input*/}
-        {/*        id="component-helper"*/}
-        {/*        value={redeemableName}*/}
-        {/*        onChange={handleChangeRedeemableName}*/}
-        {/*      />*/}
-        {/*    </FormControl>*/}
+            <FormControl variant="standard">
+              <InputLabel className="input-box-label" htmlFor="component-helper">Shoe Collection Name</InputLabel>
+              <Input
+                id="component-helper"
+                value={reserveName}
+                onChange={handleChangeReserveName}
+              />
+            </FormControl>
 
 
-        {/*    <FormControl disabled variant="standard">*/}
-        {/*      <InputLabel className="input-box-label" htmlFor="component-helper">Voucher Symbol</InputLabel>*/}
-        {/*      <Input*/}
-        {/*        id="component-helper"*/}
-        {/*        value={redeemableSymbol}*/}
-        {/*        onChange={handleChangeRedeemableSymbol}*/}
-        {/*      />*/}
-        {/*    </FormControl>*/}
+            <FormControl disabled variant="standard">
+              <InputLabel className="input-box-label" htmlFor="component-helper">Voucher Symbol</InputLabel>
+              <Input
+                id="component-helper"
+                value={reserveSymbol}
+                onChange={handleChangeReserveSymbol}
+              />
+            </FormControl>
 
-        {/*    <FormControl variant="standard">*/}
-        {/*      <InputLabel className="input-box-label" htmlFor="component-helper">Amount for Sale (1 per User)</InputLabel>*/}
-        {/*      <Input*/}
-        {/*        id="component-helper"*/}
-        {/*        value={redeemableInitialSupply}*/}
-        {/*        onChange={handleChangeRedeemableInitialSupply}*/}
-        {/*      />*/}
-        {/*    </FormControl>*/}
+            <FormControl variant="standard">
+              <InputLabel className="input-box-label" htmlFor="component-helper">Amount for Sale (1 per User)</InputLabel>
+              <Input
+                id="component-helper"
+                value={reserveInitialSupply}
+                onChange={handleChangeReserveInitialSupply}
+              />
+            </FormControl>
 
-        {/*    <div className="buttons-box">*/}
-        {/*      <Button className="fifty-percent-button" variant="outlined" onClick={() => {setAdminConfigPage(adminConfigPage-1)}}>Previous</Button>*/}
-        {/*      <Button className="fifty-percent-button" variant="contained" onClick={() => {setAdminConfigPage(adminConfigPage+1)}}>Next</Button>*/}
-        {/*    </div>*/}
-        {/*  </>*/}
-        {/*)}*/}
+            <div className="buttons-box">
+              <Button className="fifty-percent-button" variant="outlined" onClick={() => {resetToDefault()}}>Reset</Button>
+              <Button className="fifty-percent-button" variant="contained" onClick={() => {setAdminConfigPage(adminConfigPage+1)}}>Next</Button>
+            </div>
+          </>
+        )}
 
-        {/*{ adminConfigPage === 2 && (*/}
-        {/*  <>*/}
-        {/*    <Bar options={options} data={data} />;*/}
+        { adminConfigPage === 1 && (
+          <>
+            <Bar options={options} data={data} />;
 
-        {/*    <Typography variant="h5" component="h3" color="black">*/}
-        {/*      (Page 3/3)*/}
-        {/*    </Typography>*/}
+            <Typography variant="h5" component="h3" color="black">
+              (Page 2/2)
+            </Typography>
 
-        {/*    <Typography color="red">*/}
-        {/*      Please make sure you are connected to Mumbai Matic testnet.*/}
-        {/*    </Typography>*/}
+            <Typography color="red">
+              Please make sure you are connected to Mumbai Matic testnet.
+            </Typography>
 
-        {/*    <Typography color="black">*/}
-        {/*      Ratios and costs based on tests taken around the following time: 2022-05-30T15:32:44Z*/}
-        {/*    </Typography>*/}
+            <Typography color="black">
+              Ratios and costs based on tests taken around the following time: 2022-05-30T15:32:44Z
+            </Typography>
 
 
-        {/*    <Typography color="black">*/}
-        {/*      Please be aware, this example does not have strict checking, and so you will not recover the cost of network fees (gas) if a deployment fails. If Tx2 (Start Sale) fails, you can call this manually on the contract instead of re-deploying the Sale.*/}
-        {/*    </Typography>*/}
+            <Typography color="black">
+              Please be aware, this example does not have strict checking, and so you will not recover the cost of network fees (gas) if a deployment fails. If Tx2 (Start Sale) fails, you can call this manually on the contract instead of re-deploying the Sale.
+            </Typography>
 
-        {/*    <div className="buttons-box">*/}
-        {/*      <Button className="fifty-percent-button" variant="outlined" onClick={() => {setAdminConfigPage(adminConfigPage-1)}}>Previous</Button>*/}
-        {/*      <Button className="fifty-percent-button" disabled={buttonLock} variant="contained" onClick={() => {deploySale()}}>Deploy</Button>*/}
-        {/*    </div>*/}
-        {/*  </>*/}
-        {/*)}*/}
+            <div className="buttons-box">
+              <Button className="fifty-percent-button" variant="outlined" onClick={() => {setAdminConfigPage(adminConfigPage-1)}}>Previous</Button>
+              <Button className="fifty-percent-button" disabled={buttonLock} variant="contained" onClick={() => {deployToken()}}>Deploy</Button>
+            </div>
+          </>
+        )}
       </Box>
     </>
   )

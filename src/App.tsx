@@ -81,25 +81,16 @@ function App() {
   }, [tokenAddress, signer]); // only get sale data when signer and saleAddress have been loaded // monitor saleComplete so that the amount displayed on the button is updated when the sale is finished
 
   /** Handle Form Inputs **/
-  //
-  // const handleChangeReserveTokenAddress = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setReserveTokenAddress(event.target.value);
-  // };
-  // const handleChangeStaticReservePriceOfRedeemable = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setStaticReservePriceOfRedeemable(event.target.value);
-  // };
-  // const handleChangeSaleTimeout = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setSaleTimeoutInBlocks(event.target.value);
-  // };
-  // const handleChangeRedeemableName = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setRedeemableName(event.target.value);
-  // };
-  // const handleChangeRedeemableSymbol = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setRedeemableSymbol(event.target.value);
-  // };
-  // const handleChangeRedeemableInitialSupply = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setRedeemableInitialSupply(event.target.value);
-  // };
+
+  const handleChangeReserveName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setReserveName(event.target.value);
+  }
+  const handleChangeReserveSymbol = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setReserveSymbol(event.target.value);
+  }
+  const handleChangeReserveInitialSupply = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setReserveInitialSupply(event.target.value);
+  }
 
   /** Functions **/
 
@@ -224,14 +215,21 @@ function App() {
       {/*if nothing is set, show admin panel*/}
       { !faucetView && (
         <AdminPanelView
-          // adminConfigPage={adminConfigPage} reserveTokenAddress={reserveTokenAddress}
+          adminConfigPage={adminConfigPage} reserveName={reserveName}
+          handleChangeReserveName={handleChangeReserveName} reserveSymbol={reserveSymbol}
+          handleChangeReserveSymbol={handleChangeReserveSymbol}
+          reserveInitialSupply={reserveInitialSupply}
+          handleChangeReserveInitialSupply={handleChangeReserveInitialSupply} resetToDefault={resetToDefault}
+          setAdminConfigPage={setAdminConfigPage} buttonLock={buttonLock} deployToken={deployToken}
         />
       )}
 
       { faucetView && (
         <TokenView
-          // redeemableName={redeemableName} redeemableSymbol={redeemableSymbol} modalOpen={modalOpen}
-      />
+          reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
+          reserveInitialSupply={reserveInitialSupply}
+          setModalOpen={setModalOpen}
+        />
       )}
 
     </div>
