@@ -186,6 +186,7 @@ function App() {
       // @ts-ignore
       const emissionsErc20 = new rainSDK.EmissionsERC20(tokenAddress, signer);
 
+      // todo add claim code
 
     //   setConsoleData(`Complete! You can view the ${redeemableSymbol} in your wallet by adding: ${redeemableTokenAddress}`);
     //   setConsoleColor(`green`); // todo add to struct
@@ -226,6 +227,7 @@ function App() {
 
       { faucetView && (
         <TokenView
+          consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
           reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
           reserveInitialSupply={reserveInitialSupply}
           setModalOpen={setModalOpen} buttonLock={buttonLock}

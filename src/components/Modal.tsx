@@ -21,13 +21,16 @@ type modalProps = {
   modalOpen: boolean, setModalOpen: any, reserveSymbol: string, reserveInitialSupply: any, buttonLock: any
   // initiateBuy: any, buttonLock: boolean, redeemableTokenAddress: string,
   // staticReservePriceOfRedeemable: any,  redeemableSymbol: string, consoleData: string,
-  // consoleColor: string
+  initiateClaim: any,
+  consoleData: string,
+  consoleColor: string
 }
 
 export default function Modal({
-    modalOpen, setModalOpen, reserveSymbol, reserveInitialSupply, buttonLock
+    modalOpen, setModalOpen, reserveSymbol, reserveInitialSupply, buttonLock,
     // initiateBuy, buttonLock, redeemableTokenAddress, staticReservePriceOfRedeemable,
     // redeemableSymbol, consoleData, consoleColor}
+    initiateClaim, consoleData, consoleColor
   } : modalProps )
 {
 
@@ -83,20 +86,20 @@ export default function Modal({
           <br/>
 
           {/*{ !staticReservePriceOfRedeemable.includes('e') && (*/}
-          {/*  <Bar options={options} data={data} />*/}
+            <Bar options={options} data={data} />
           {/*)}*/}
 
           <br/>
 
           {/*<Typography className="modalText">An {redeemableSymbol} will be exchangeable for a real life Shoe!</Typography><br/>*/}
 
-          {/*{ consoleColor === 'red' && (*/}
-          {/*  <Typography className="modalTextRed">{consoleData}</Typography>*/}
-          {/*)}*/}
+          { consoleColor === 'red' && (
+            <Typography className="modalTextRed">{consoleData}</Typography>
+          )}
 
-          {/*{ consoleColor === 'green' && (*/}
-          {/*  <Typography className="modalTextGreen">{consoleData}</Typography>*/}
-          {/*)}*/}
+          { consoleColor === 'green' && (
+            <Typography className="modalTextGreen">{consoleData}</Typography>
+          )}
 
           <br/>
 
@@ -104,7 +107,7 @@ export default function Modal({
             <Button disabled={buttonLock} className="fifty-percent-button" variant="outlined" onClick={() => {setModalOpen(false)}}>Close</Button>
 
             {/*{ !staticReservePriceOfRedeemable.includes('e') && (*/}
-            {/*  <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateBuy}>Buy A Shoe ({staticReservePriceOfRedeemable}{reserveSymbol})</Button>*/}
+              <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateClaim}>Get {reserveInitialSupply} {reserveSymbol}!</Button>
             {/*)}*/}
             {/*{ staticReservePriceOfRedeemable.includes('e')  && (*/}
             {/*  <Button disabled={buttonLock} className="fifty-percent-button" variant="contained">Buy Limit Reached</Button>*/}
