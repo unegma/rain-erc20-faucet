@@ -72,7 +72,7 @@ export default function AdminPanelView({
       },
       {
         label: '',
-        data: [0.00178683], // todo base it on dynamic matic costs
+        data: [0.01268265], // todo base it on dynamic matic costs
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
@@ -160,7 +160,7 @@ export default function AdminPanelView({
             </Typography>
 
             <Typography color="black">
-              Ratios and costs based on tests taken around the following time: 2022-06-29T05:46:00Z
+              Ratios and costs based on tests taken around the following time: 2022-06-29T05:50:00Z
             </Typography>
 
 
