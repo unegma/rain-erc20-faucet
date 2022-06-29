@@ -105,6 +105,10 @@ export default function AdminPanelView({
           A Short Demo of a Rain Protocol ERC20 Faucet
         </Typography>
 
+        <Typography color="black" align="center">
+          <a href="https://rain-shoe-sale.unegma.work" target="_blank">These can be used as 'Reserve Tokens' here</a>
+        </Typography>
+
         <img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />
 
         { adminConfigPage === 0 && (
