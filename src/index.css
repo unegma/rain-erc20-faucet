@@ -136,3 +136,7 @@ canvas {
   justify-content: center;
   z-index: 1500;
 }
+
+canvas:hover {
+  cursor: pointer;
+}

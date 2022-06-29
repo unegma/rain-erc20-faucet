@@ -230,7 +230,7 @@ function App() {
           consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
           reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
           reserveInitialSupply={reserveInitialSupply}
-          setModalOpen={setModalOpen} buttonLock={buttonLock}
+          setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
         />
       )}
 

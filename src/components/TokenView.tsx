@@ -6,14 +6,14 @@ import {ContactShadows, Environment, OrbitControls} from "@react-three/drei";
 import Faucet from "./Faucet";
 
 type tokenViewProps = {
-  reserveName: string, reserveSymbol: string, modalOpen: any, setModalOpen: any, reserveInitialSupply: any, buttonLock: any,
+  reserveName: string, reserveSymbol: string, modalOpen: any, setModalOpen: any, reserveInitialSupply: any, buttonLock: any, tokenAddress: string,
   // redeemableName: any, redeemableSymbol: any, modalOpen: any, setModalOpen: any, initiateBuy: any, buttonLock: any,
   // redeemableTokenAddress: any, staticReservePriceOfRedeemable: any, reserveSymbol: any, consoleData: any,
   consoleColor: any, consoleData: any, initiateClaim: any
 }
 
 export default function TokenView({
-    reserveName, reserveSymbol, modalOpen, setModalOpen, reserveInitialSupply, buttonLock,
+    reserveName, reserveSymbol, modalOpen, setModalOpen, reserveInitialSupply, buttonLock, tokenAddress,
     consoleData, consoleColor, initiateClaim
     // initiateBuy, buttonLock, tokenAddress,
     // staticReservePriceOfRedeemable, reserveSymbol, consoleData, consoleColor, redeemableInitialSupply
@@ -37,6 +37,7 @@ export default function TokenView({
           consoleData={consoleData}
           consoleColor={consoleColor}
           initiateClaim={initiateClaim}
+          tokenAddress={tokenAddress}
         />
 
         <Canvas onClick={() => {setModalOpen(!modalOpen)}} shadows dpr={[1,2 ]} camera={{ position: [0, 0, 1.1], fov: 50 }}>

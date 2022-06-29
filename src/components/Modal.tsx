@@ -18,7 +18,7 @@ const style = {
 };
 
 type modalProps = {
-  modalOpen: boolean, setModalOpen: any, reserveSymbol: string, reserveInitialSupply: any, buttonLock: any
+  modalOpen: boolean, setModalOpen: any, reserveSymbol: string, reserveInitialSupply: any, buttonLock: any, tokenAddress: string,
   // initiateBuy: any, buttonLock: boolean, redeemableTokenAddress: string,
   // staticReservePriceOfRedeemable: any,  redeemableSymbol: string, consoleData: string,
   initiateClaim: any,
@@ -27,7 +27,7 @@ type modalProps = {
 }
 
 export default function Modal({
-    modalOpen, setModalOpen, reserveSymbol, reserveInitialSupply, buttonLock,
+    modalOpen, setModalOpen, reserveSymbol, reserveInitialSupply, buttonLock, tokenAddress,
     // initiateBuy, buttonLock, redeemableTokenAddress, staticReservePriceOfRedeemable,
     // redeemableSymbol, consoleData, consoleColor}
     initiateClaim, consoleData, consoleColor
@@ -51,7 +51,7 @@ export default function Modal({
 
 
   const data = {
-    labels: [`Tx1: Claim ${reserveInitialSupply}${reserveSymbol}`],
+    labels: [`Tx1: Claim ${reserveInitialSupply} ${reserveSymbol}`],
     datasets: [
       {
         label: '',
@@ -91,7 +91,9 @@ export default function Modal({
 
           <br/>
 
-          {/*<Typography className="modalText">An {redeemableSymbol} will be exchangeable for a real life Shoe!</Typography><br/>*/}
+          <Typography className="modalText">These {reserveSymbol} can be used in the <a href="https://rain-shoe-sale.unegma.work" target="_blank">Rain Shoe Sale</a> example!
+            Use: {tokenAddress} as the Reserve Token, and then Users can use {reserveSymbol} to buy Shoe Vouchers.
+          </Typography><br/>
 
           { consoleColor === 'red' && (
             <Typography className="modalTextRed">{consoleData}</Typography>
