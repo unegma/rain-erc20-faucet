@@ -72,7 +72,7 @@ export default function AdminPanelView({
       },
       {
         label: '',
-        data: [0.040, 0.00125], // todo base it on dynamic matic costs
+        data: [0.00178683], // todo base it on dynamic matic costs
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
@@ -113,7 +113,7 @@ export default function AdminPanelView({
             </Typography>
 
             <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Shoe Collection Name</InputLabel>
+              <InputLabel className="input-box-label" htmlFor="component-helper">Reserve Token Name</InputLabel>
               <Input
                 id="component-helper"
                 value={reserveName}
@@ -122,8 +122,8 @@ export default function AdminPanelView({
             </FormControl>
 
 
-            <FormControl disabled variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Voucher Symbol</InputLabel>
+            <FormControl variant="standard">
+              <InputLabel className="input-box-label" htmlFor="component-helper">Reserve Token Symbol</InputLabel>
               <Input
                 id="component-helper"
                 value={reserveSymbol}
@@ -132,7 +132,7 @@ export default function AdminPanelView({
             </FormControl>
 
             <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Amount for Sale (1 per User)</InputLabel>
+              <InputLabel className="input-box-label" htmlFor="component-helper">Amount a Faucet User will Receive</InputLabel>
               <Input
                 id="component-helper"
                 value={reserveInitialSupply}
@@ -160,12 +160,12 @@ export default function AdminPanelView({
             </Typography>
 
             <Typography color="black">
-              Ratios and costs based on tests taken around the following time: 2022-05-30T15:32:44Z
+              Ratios and costs based on tests taken around the following time: 2022-06-29T05:46:00Z
             </Typography>
 
 
             <Typography color="black">
-              Please be aware, this example does not have strict checking, and so you will not recover the cost of network fees (gas) if a deployment fails. If Tx2 (Start Sale) fails, you can call this manually on the contract instead of re-deploying the Sale.
+              Please be aware, this example does not have strict checking, and so you will not recover the cost of network fees (gas) if a deployment fails.
             </Typography>
 
             <div className="buttons-box">

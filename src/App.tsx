@@ -169,7 +169,7 @@ function App() {
     } catch (err) {
       console.log(err);
       setLoading(false);
-      // todo set button lock?
+      setButtonLock(false);
       alert('Failed Deployment.');
     }
   }
