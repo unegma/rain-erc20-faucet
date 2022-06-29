@@ -194,7 +194,7 @@ function App() {
       setConsoleData(`Complete! You can view the ${reserveSymbol} in your wallet by adding: ${tokenAddress}`);
       setConsoleColor(`green`); // todo add to struct
     //   setSaleComplete(true);
-      setButtonLock(false);
+    //   setButtonLock(false); // don't set to true to disincentive users from continuing to click it
       setLoading(false);
     } catch(err) {
       setLoading(false);
