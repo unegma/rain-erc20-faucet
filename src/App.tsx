@@ -186,13 +186,16 @@ function App() {
       // @ts-ignore
       const emissionsErc20 = new rainSDK.EmissionsERC20(tokenAddress, signer);
 
-      // todo add claim code
+      // TODO FIGURE OUT WHAT IS HAPPENING WITH ADDRESSZERO
+      const claimTransaction = await emissionsErc20.claim(address, ethers.constants.AddressZero);
+      const claimReceipt = await claimTransaction.wait();
+      console.log('Success', claimReceipt);
 
-    //   setConsoleData(`Complete! You can view the ${redeemableSymbol} in your wallet by adding: ${redeemableTokenAddress}`);
-    //   setConsoleColor(`green`); // todo add to struct
+      setConsoleData(`Complete! You can view the ${reserveSymbol} in your wallet by adding: ${tokenAddress}`);
+      setConsoleColor(`green`); // todo add to struct
     //   setSaleComplete(true);
-    //   setButtonLock(false);
-    //   setLoading(false);
+      setButtonLock(false);
+      setLoading(false);
     } catch(err) {
       setLoading(false);
       setButtonLock(false);
