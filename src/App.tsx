@@ -228,7 +228,7 @@ function App() {
         <TokenView
           reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
           reserveInitialSupply={reserveInitialSupply}
-          setModalOpen={setModalOpen}
+          setModalOpen={setModalOpen} buttonLock={buttonLock}
         />
       )}
 

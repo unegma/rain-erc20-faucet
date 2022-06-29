@@ -17,8 +17,18 @@ const style = {
   p: 4,
 };
 
-export default function Modal({modalOpen, setModalOpen, initiateBuy, buttonLock, redeemableTokenAddress, staticReservePriceOfRedeemable, reserveSymbol, redeemableSymbol, consoleData, consoleColor}:
-  {modalOpen: boolean, setModalOpen: any, initiateBuy: any, buttonLock: boolean, redeemableTokenAddress: string, staticReservePriceOfRedeemable: any, reserveSymbol: string, redeemableSymbol: string, consoleData: string, consoleColor: string})
+type modalProps = {
+  modalOpen: boolean, setModalOpen: any, reserveSymbol: string, reserveInitialSupply: any, buttonLock: any
+  // initiateBuy: any, buttonLock: boolean, redeemableTokenAddress: string,
+  // staticReservePriceOfRedeemable: any,  redeemableSymbol: string, consoleData: string,
+  // consoleColor: string
+}
+
+export default function Modal({
+    modalOpen, setModalOpen, reserveSymbol, reserveInitialSupply, buttonLock
+    // initiateBuy, buttonLock, redeemableTokenAddress, staticReservePriceOfRedeemable,
+    // redeemableSymbol, consoleData, consoleColor}
+  } : modalProps )
 {
 
 
@@ -38,7 +48,7 @@ export default function Modal({modalOpen, setModalOpen, initiateBuy, buttonLock,
 
 
   const data = {
-    labels: [`Tx1: Approve ${staticReservePriceOfRedeemable}${reserveSymbol}`, 'Tx2: Buy'],
+    labels: [`Tx1: Claim ${reserveInitialSupply}${reserveSymbol}`],
     datasets: [
       {
         label: '',
@@ -47,7 +57,7 @@ export default function Modal({modalOpen, setModalOpen, initiateBuy, buttonLock,
       },
       {
         label: '',
-        data: [0.00927434, 0.00985916], // todo base it on dynamic matic costs
+        data: [0.00927434], // todo base it on dynamic matic costs
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
@@ -72,33 +82,33 @@ export default function Modal({modalOpen, setModalOpen, initiateBuy, buttonLock,
 
           <br/>
 
-          { !staticReservePriceOfRedeemable.includes('e') && (
-            <Bar options={options} data={data} />
-          )}
+          {/*{ !staticReservePriceOfRedeemable.includes('e') && (*/}
+          {/*  <Bar options={options} data={data} />*/}
+          {/*)}*/}
 
           <br/>
 
-          <Typography className="modalText">An {redeemableSymbol} will be exchangeable for a real life Shoe!</Typography><br/>
+          {/*<Typography className="modalText">An {redeemableSymbol} will be exchangeable for a real life Shoe!</Typography><br/>*/}
 
-          { consoleColor === 'red' && (
-            <Typography className="modalTextRed">{consoleData}</Typography>
-          )}
+          {/*{ consoleColor === 'red' && (*/}
+          {/*  <Typography className="modalTextRed">{consoleData}</Typography>*/}
+          {/*)}*/}
 
-          { consoleColor === 'green' && (
-            <Typography className="modalTextGreen">{consoleData}</Typography>
-          )}
+          {/*{ consoleColor === 'green' && (*/}
+          {/*  <Typography className="modalTextGreen">{consoleData}</Typography>*/}
+          {/*)}*/}
 
           <br/>
 
           <div className="buttons-box">
             <Button disabled={buttonLock} className="fifty-percent-button" variant="outlined" onClick={() => {setModalOpen(false)}}>Close</Button>
 
-            { !staticReservePriceOfRedeemable.includes('e') && (
-              <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateBuy}>Buy A Shoe ({staticReservePriceOfRedeemable}{reserveSymbol})</Button>
-            )}
-            { staticReservePriceOfRedeemable.includes('e')  && (
-              <Button disabled={buttonLock} className="fifty-percent-button" variant="contained">Buy Limit Reached</Button>
-            )}
+            {/*{ !staticReservePriceOfRedeemable.includes('e') && (*/}
+            {/*  <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateBuy}>Buy A Shoe ({staticReservePriceOfRedeemable}{reserveSymbol})</Button>*/}
+            {/*)}*/}
+            {/*{ staticReservePriceOfRedeemable.includes('e')  && (*/}
+            {/*  <Button disabled={buttonLock} className="fifty-percent-button" variant="contained">Buy Limit Reached</Button>*/}
+            {/*)}*/}
 
           </div>
 
