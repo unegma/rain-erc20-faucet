@@ -144,6 +144,7 @@ function App() {
         initialSupply: ethers.utils.parseUnits("0", reserveDecimals), // todo change this to 0 if possible, or tell the deployer that they will get an amoujnt of tokens
       },
       vmStateConfig: {
+        // todo should really change 'initialSupply' to now be 'faucetSupply' or something
         constants: [ethers.utils.parseUnits(reserveInitialSupply, reserveDecimals)], // mint a set amount at a time (infinitely), if set to 10, will mint 10 at a time, no more no less (infinitely)
         sources: [
           ethers.utils.concat([
