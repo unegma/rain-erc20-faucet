@@ -4,7 +4,7 @@ import * as rainSDK from "rain-sdk";
 import { connect } from "./connect.js"; // a very basic web3 connection implementation
 import {CircularProgress} from "@mui/material";
 import AdminPanelView from "./components/AdminPanelView";
-import SaleView from "./components/SaleView";
+import TokenView from "./components/TokenView";
 
 declare var process : {
   env: {
@@ -229,7 +229,7 @@ function App() {
       )}
 
       { faucetView && (
-        <SaleView
+        <TokenView
           // redeemableName={redeemableName} redeemableSymbol={redeemableSymbol} modalOpen={modalOpen}
       />
       )}

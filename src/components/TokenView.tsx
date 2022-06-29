@@ -4,16 +4,16 @@ import {Canvas} from "@react-three/fiber";
 import React, {Suspense} from "react";
 import {Environment, OrbitControls} from "@react-three/drei";
 
-type saleViewProps = {
+type tokenViewProps = {
   // redeemableName: any, redeemableSymbol: any, modalOpen: any, setModalOpen: any, initiateBuy: any, buttonLock: any,
   // redeemableTokenAddress: any, staticReservePriceOfRedeemable: any, reserveSymbol: any, consoleData: any,
   // consoleColor: any, redeemableInitialSupply: any
 }
 
-export default function SaleView({
+export default function TokenView({
     // redeemableName, redeemableSymbol, modalOpen, setModalOpen, initiateBuy, buttonLock, redeemableTokenAddress,
     // staticReservePriceOfRedeemable, reserveSymbol, consoleData, consoleColor, redeemableInitialSupply
-  }: saleViewProps )
+  }: tokenViewProps )
 {
 
   return (
@@ -32,6 +32,16 @@ export default function SaleView({
         {/*  consoleData={consoleData}*/}
         {/*  consoleColor={consoleColor}*/}
         {/*/>*/}
+
+        <Canvas camera={{ position: [0, 0, 20], fov: 50 }} performance={{ min: 0.1 }}>
+          <ambientLight intensity={0.5} />
+          <directionalLight intensity={0.3} position={[5, 25, 20]} />
+          <Suspense fallback={null}>
+            {/*<Shoes modalOpen={modalOpen} setModalOpen={setModalOpen} amount={redeemableInitialSupply} />*/}
+            <Environment preset="city" />
+          </Suspense>
+          <OrbitControls autoRotate autoRotateSpeed={1} />
+        </Canvas>
 
       </div>
     </>
