@@ -141,7 +141,7 @@ function App() {
         name: reserveName,
         symbol: reserveSymbol,
         distributor: address, // initialSupply is given to the distributor during the deployment of the emissions contract
-        initialSupply: ethers.utils.parseUnits(reserveInitialSupply, reserveDecimals),
+        initialSupply: ethers.utils.parseUnits(reserveInitialSupply, reserveDecimals), // todo change this to 0 if possible, or tell the deployer that they will get an amoujnt of tokens
       },
       vmStateConfig: {
         constants: [reserveInitialSupply], // mint a set amount at a time (infinitely), if set to 10, will mint 10 at a time, no more no less (infinitely)
