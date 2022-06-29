@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Modal as ModalMaterial } from '@mui/material';
 import {Bar} from "react-chartjs-2";
-const displayedImage = 'https://assets.unegma.net/unegma.work/rain-shoe-sale.unegma.work/shoes.jpg'
+// const displayedImage = 'https://assets.unegma.net/unegma.work/rain-erc20-faucet.unegma.work/faucet.jpg'
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -79,7 +79,7 @@ export default function Modal({
         aria-describedby="modal-modal-description"
       >
         <Box component="div" sx={style}>
-          <img className="modalImage" src={displayedImage} alt="#" /><br/>
+          {/*<img className="modalImage" src={displayedImage} alt="#" /><br/>*/}
 
           {/*todo create graph of transaction costs*/}
 

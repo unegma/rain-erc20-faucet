@@ -27,6 +27,7 @@ ChartJS.register(
 );
 
 // const displayedImage = 'https://assets.unegma.net/unegma.work/rain-shoe-sale.unegma.work/shoe-voucher.jpg'
+const displayedImage = 'https://assets.unegma.net/unegma.work/rain-erc20-faucet.unegma.work/faucet.jpg';
 
 type adminPanelProps = {
   adminConfigPage: number
@@ -104,7 +105,7 @@ export default function AdminPanelView({
           A Short Demo of a Rain Protocol ERC20 Faucet
         </Typography>
 
-        {/*<img hidden={!(adminConfigPage !== 2)} className="mainImage" src={displayedImage} alt="#" />*/}
+        <img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />
 
         { adminConfigPage === 0 && (
           <>

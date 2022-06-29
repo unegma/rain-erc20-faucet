@@ -65,6 +65,12 @@ canvas {
   height: auto;
 }
 
+.faucetImage {
+  width: 50vw;
+  height: auto;
+  cursor: pointer;
+}
+
 .navBar {
   z-index: 2;
   color: black;
