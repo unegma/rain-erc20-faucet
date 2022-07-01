@@ -51,7 +51,7 @@ export default function Modal({
 
 
   const data = {
-    labels: [`Tx1: Claim ${reserveInitialSupply} ${reserveSymbol}`],
+    labels: [`Tx1: Claim ${reserveSymbol}`],
     datasets: [
       {
         label: '',
