@@ -2,9 +2,6 @@
 
 This small project was designed to show Rain Protocol Sale functionality using the SDK.
 
-Sink Model Here, by https://sketchfab.com/jennmissi
-https://sketchfab.com/3d-models/final-sink-time-tech-503431223be34a5e8eba799b6ffb7a62
-
 ---
 
 # Getting Started with Create React App
