@@ -28,6 +28,7 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
   const { nodes, materials, animations } = useGLTF(FAUCET_URL) as GLTFResult
   // @ts-ignore
   const { actions } = useAnimations<GLTFActions>(animations, group)
+  console.log(actions)
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">

@@ -109,7 +109,7 @@ export default function Modal({
             <Button disabled={buttonLock} className="fifty-percent-button" variant="outlined" onClick={() => {setModalOpen(false)}}>Close</Button>
 
             {/*{ !staticReservePriceOfRedeemable.includes('e') && (*/}
-              <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateClaim}>Get {reserveInitialSupply} {reserveSymbol}!</Button>
+              <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateClaim}>Get {reserveSymbol}!</Button>
             {/*)}*/}
             {/*{ staticReservePriceOfRedeemable.includes('e')  && (*/}
             {/*  <Button disabled={buttonLock} className="fifty-percent-button" variant="contained">Buy Limit Reached</Button>*/}
