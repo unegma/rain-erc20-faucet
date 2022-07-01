@@ -55,11 +55,6 @@ body {
   user-select: none;
 }
 
-canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
-
 .canvasContainer {
 
 }
@@ -147,12 +142,12 @@ canvas {
   z-index: 1500;
 }
 
-/*canvas {*/
-/*  width: 100% !important;*/
-/*  height: 100% !important;*/
-/*}*/
+.the-canvas {
+  width: 100vw !important;
+  height: 60vh !important; /* above 70 seems to break something */
+}
 
-canvas:hover {
+.the-canvas:hover {
   cursor: pointer;
 }
 
