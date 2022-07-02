@@ -33,8 +33,8 @@ function App() {
   const [buttonLock, setButtonLock] = useState(false);
   const [loading, setLoading] = useState(false);
   const [adminConfigPage, setAdminConfigPage] = useState(0);
-  const [faucetView, setFaucetView] = React.useState(false); // show sale or admin view (if there is a sale address in the url)
-  const [showFaucet, setShowFaucet] = React.useState(false);
+  const [faucetView, setFaucetView] = React.useState(false); // show faucet or admin view (if there is a faucet address in the url)
+  const [showFaucet, setShowFaucet] = React.useState(false); // todo may not be needed
   const [modalOpen, setModalOpen] = React.useState(false);
 
   // all these from .env will be replaced by calls to blockchain within the getTokenData function when faucetView is set to true
