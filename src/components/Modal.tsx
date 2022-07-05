@@ -92,8 +92,7 @@ export default function Modal({
           <br/>
 
           {/*todo pass the address in url when passing*/}
-          <Typography className="modalText">These {reserveSymbol} can be used in the <a href={`https://rain-shoe-sale.unegma.work?t=${tokenAddress}`} target="_blank">Rain Shoe Sale (passes Token address)</a>
-            Use: {tokenAddress} as the Reserve Token, and then Users can use {reserveSymbol} to buy Shoe Vouchers.
+          <Typography className="modalText">These {reserveSymbol} can be used as the Reserve Token in the <a href={`https://rain-shoe-sale.unegma.work?t=${tokenAddress}`} target="_blank">Rain Shoe Sale (link passes Token address).</a>
           </Typography><br/>
 
           { consoleColor === 'red' && (
