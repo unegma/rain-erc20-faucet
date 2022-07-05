@@ -92,7 +92,12 @@ export default function Modal({
           <br/>
 
           {/*todo pass the address in url when passing*/}
-          <Typography className="modalText">These {reserveSymbol} can be used as the Reserve Token in the <a href={`https://rain-shoe-sale.unegma.work?t=${tokenAddress}`} target="_blank">Rain Shoe Sale (link passes Token address).</a>
+          <Typography className="modalText">
+            These {reserveSymbol} can be used as the Reserve Token in the <a href={`https://rain-shoe-sale.unegma.work?t=${tokenAddress}`} target="_blank">Rain Shoe Sale (link passes Token address).</a>
+          </Typography><br/>
+
+          <Typography className="modalText">
+            To see these tokens in your Web3 Wallet, you may need to add the address {tokenAddress} for {reserveSymbol} under Import Token.
           </Typography><br/>
 
           { consoleColor === 'red' && (
