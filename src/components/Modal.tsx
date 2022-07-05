@@ -97,7 +97,7 @@ export default function Modal({
           </Typography><br/>
 
           <Typography className="modalText">
-            To see these tokens in your Web3 Wallet, you may need to add the address {tokenAddress} for {reserveSymbol} under Import Token.
+            To see these tokens in your Wallet, you may need to add the address ({tokenAddress}) for {reserveSymbol}.
           </Typography><br/>
 
           { consoleColor === 'red' && (
