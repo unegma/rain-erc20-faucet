@@ -1,10 +1,14 @@
 import React, {useEffect, useState} from 'react';
+import {
+  Route, Routes
+} from "react-router-dom";
 import {ethers, Signer} from "ethers";
 import * as rainSDK from "rain-sdk";
 import { connect } from "./connect.js"; // a very basic web3 connection implementation
 import {CircularProgress} from "@mui/material";
 import AdminPanelView from "./components/AdminPanelView";
 import TokenView from "./components/TokenView";
+import TokenSettingsView from "./components/TokenSettingsView";
 
 declare var process : {
   env: {
@@ -25,7 +29,7 @@ function App() {
   // high level
   const [signer, setSigner] = useState<Signer|undefined>(undefined);
   const [address, setAddress] = useState("");
-  const [tokenAddress, setTokenAddress] = React.useState("");
+  const [tokenAddress, setTokenAddress] = React.useState(""); // this is now retrieved from the url
   const [consoleData, setConsoleData] = React.useState("");
   const [consoleColor, setConsoleColor] = React.useState('red');
 
@@ -34,7 +38,6 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [adminConfigPage, setAdminConfigPage] = useState(0);
   const [faucetView, setFaucetView] = React.useState(false); // show faucet or admin view (if there is a faucet address in the url)
-  const [showFaucet, setShowFaucet] = React.useState(false); // todo may not be needed
   const [modalOpen, setModalOpen] = React.useState(false);
 
   // all these from .env will be replaced by calls to blockchain within the getTokenData function when faucetView is set to true
@@ -56,17 +59,17 @@ function App() {
 
   /** UseEffects **/
 
-  // run once on render and check url parameters
-  useEffect(() => {
-    let queryString = new URLSearchParams(window.location.search);
-    let tParam = queryString.get('t');
-
-    if (typeof tParam !== 'undefined' && tParam) {
-      console.log(`tokenAddress is ${tParam}`) // why logged twice: https://stackoverflow.com/questions/60971185/why-does-create-react-app-initialize-twice
-      setFaucetView(true);
-      setTokenAddress(tParam);
-    }
-  },[]);
+  // // run once on render and check url parameters
+  // useEffect(() => {
+  //   let queryString = new URLSearchParams(window.location.search);
+  //   let tParam = queryString.get('t');
+  //
+  //   if (typeof tParam !== 'undefined' && tParam) {
+  //     console.log(`tokenAddress is ${tParam}`) // why logged twice: https://stackoverflow.com/questions/60971185/why-does-create-react-app-initialize-twice
+  //     setFaucetView(true);
+  //     setTokenAddress(tParam);
+  //   }
+  // },[]);
 
   // basic connection to web3 wallet
   useEffect(() => {
@@ -75,6 +78,7 @@ function App() {
 
   // this relies on useEffect above to get tokenAddress from url // todo may be able to merge this one with the above one
   useEffect(() => {
+    // todo check this still works with new url parameter
     if (tokenAddress && signer) {
       getTokenData(); // get saleContract and then get amount of shoes, and then load shoes
     }
@@ -122,7 +126,7 @@ function App() {
       // console.log(`Shoes in Sale: ${amountOfShoes}`); // todo check if this changes when they are bought
       // setRedeemableInitialSupply(amountOfShoes.toString()); // TODO THIS SHOULD BE REMAINING SHOES NOT TOTAL SUPPLY
 
-      setShowFaucet(true);
+      setFaucetView(true);
     } catch(err) {
       console.log('Error getting token data', err);
     }
@@ -166,7 +170,7 @@ function App() {
       console.log('Info: to see the tokens in your Wallet, add a new token with the address above. ALSO, REMEMBER TO NOTE DOWN THIS ADDRESS, AS IT WILL BE USED AS RESERVE_TOKEN IN FUTURE TUTORIALS.');
 
       console.log(`Redirecting to Token Faucet: ${emissionsERC20Address}`);
-      window.location.replace(`${window.location.origin}?t=${emissionsERC20Address}`);
+      window.location.replace(`${window.location.origin}/${emissionsERC20Address}`);
     } catch (err) {
       console.log(err);
       setLoading(false);
@@ -218,25 +222,81 @@ function App() {
       )}
 
       {/*if nothing is set, show admin panel*/}
-      { !faucetView && (
-        <AdminPanelView
-          adminConfigPage={adminConfigPage} reserveName={reserveName}
-          handleChangeReserveName={handleChangeReserveName} reserveSymbol={reserveSymbol}
-          handleChangeReserveSymbol={handleChangeReserveSymbol}
-          reserveInitialSupply={reserveInitialSupply}
-          handleChangeReserveInitialSupply={handleChangeReserveInitialSupply} resetToDefault={resetToDefault}
-          setAdminConfigPage={setAdminConfigPage} buttonLock={buttonLock} deployToken={deployToken}
-        />
-      )}
+      {/*{ !faucetView && (*/}
+      {/*  <AdminPanelView*/}
+      {/*    adminConfigPage={adminConfigPage} reserveName={reserveName}*/}
+      {/*    handleChangeReserveName={handleChangeReserveName} reserveSymbol={reserveSymbol}*/}
+      {/*    handleChangeReserveSymbol={handleChangeReserveSymbol}*/}
+      {/*    reserveInitialSupply={reserveInitialSupply}*/}
+      {/*    handleChangeReserveInitialSupply={handleChangeReserveInitialSupply} resetToDefault={resetToDefault}*/}
+      {/*    setAdminConfigPage={setAdminConfigPage} buttonLock={buttonLock} deployToken={deployToken}*/}
+      {/*  />*/}
+      {/*)}*/}
 
-      { faucetView && (
-        <TokenView
-          consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
-          reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
-          reserveInitialSupply={reserveInitialSupply}
-          setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
+      {/*{ faucetView && (*/}
+      {/*  <TokenView*/}
+      {/*    consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}*/}
+      {/*    reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}*/}
+      {/*    reserveInitialSupply={reserveInitialSupply}*/}
+      {/*    setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}*/}
+      {/*  />*/}
+      {/*)}*/}
+
+{/*todo change 'admin panel' to deploypanel*/}
+
+      <Routes>
+        <Route
+          key={'home'}
+          path="/"
+          element={
+            <AdminPanelView
+              adminConfigPage={adminConfigPage} reserveName={reserveName}
+              handleChangeReserveName={handleChangeReserveName} reserveSymbol={reserveSymbol}
+              handleChangeReserveSymbol={handleChangeReserveSymbol}
+              reserveInitialSupply={reserveInitialSupply}
+              handleChangeReserveInitialSupply={handleChangeReserveInitialSupply} resetToDefault={resetToDefault}
+              setAdminConfigPage={setAdminConfigPage} buttonLock={buttonLock} deployToken={deployToken}
+            />
+          }
         />
-      )}
+
+        <Route
+          key={'token'}
+          path="/:id"
+          element={
+            <TokenView
+              consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
+              reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
+              reserveInitialSupply={reserveInitialSupply}
+              setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
+              setTokenAddress={setTokenAddress} faucetView={faucetView}
+            />
+          }
+        />
+
+        <Route
+          key={'token-settings'}
+          path="/:id/settings"
+          element={
+            <TokenSettingsView
+              // consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
+              // reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
+              // reserveInitialSupply={reserveInitialSupply}
+              // setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
+              // setTokenAddress={setTokenAddress} faucetView={faucetView}
+            />
+          }
+        />
+
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: "1rem" }}>
+              <p className='black'>There's nothing here!</p>
+            </main>
+          }
+        />
+      </Routes>
 
     </div>
   );
