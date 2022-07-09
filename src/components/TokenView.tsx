@@ -23,13 +23,6 @@ export default function TokenView({
     // staticReservePriceOfRedeemable, reserveSymbol, consoleData, consoleColor, redeemableInitialSupply
   }: tokenViewProps )
 {
-  let { id } = useParams();
-
-  // set token address by url instead of t= (check line 80 onwards works in app.tsx for getting the tokenData)
-  useEffect(() => {
-    setTokenAddress(id);
-  }, []);
-
   return (
     <>
       { faucetView && (

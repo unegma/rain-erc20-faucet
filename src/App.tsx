@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
-  Route, Routes
+  Route, Routes, useParams
 } from "react-router-dom";
 import {ethers, Signer} from "ethers";
 import * as rainSDK from "rain-sdk";
@@ -70,6 +70,12 @@ function App() {
   //     setTokenAddress(tParam);
   //   }
   // },[]);
+
+  let {id}: any = useParams();
+  // set token address by url instead of t= (check line 80 onwards works in app.tsx for getting the tokenData)
+  useEffect(() => {
+    setTokenAddress(id);
+  }, []);
 
   // basic connection to web3 wallet
   useEffect(() => {
