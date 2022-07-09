@@ -6,7 +6,7 @@ import {ethers, Signer} from "ethers";
 import * as rainSDK from "rain-sdk";
 import { connect } from "./connect.js"; // a very basic web3 connection implementation
 import {CircularProgress} from "@mui/material";
-import AdminPanelView from "./components/AdminPanelView";
+import AdminPanelView from "./components/DeployPanelView";
 import TokenView from "./components/TokenView";
 import TokenSettingsView from "./components/TokenSettingsView";
 
@@ -77,6 +77,7 @@ function App() {
   },[]);
 
   // this relies on useEffect above to get tokenAddress from url // todo may be able to merge this one with the above one
+  // todo check this section because it is different in all frontends
   useEffect(() => {
     // todo check this still works with new url parameter
     if (tokenAddress && signer) {

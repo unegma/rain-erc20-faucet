@@ -38,7 +38,7 @@ type adminPanelProps = {
   buttonLock: any, deployToken: any
 }
 
-export default function AdminPanelView({
+export default function DeployPanelView({
   adminConfigPage,
   reserveName, handleChangeReserveName,
   reserveSymbol, handleChangeReserveSymbol,
