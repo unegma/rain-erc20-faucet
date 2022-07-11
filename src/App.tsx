@@ -197,7 +197,7 @@ function App() {
       const claimReceipt = await claimTransaction.wait();
       console.log('Success', claimReceipt);
 
-      setConsoleData(`Complete! You can view the ${reserveSymbol} in your wallet by adding: ${tokenAddress}`);
+      setConsoleData(`Complete!`);
       setConsoleColor(`green`); // todo add to struct
     //   setSaleComplete(true);
     //   setButtonLock(false); // don't set to true to disincentive users from continuing to click it
