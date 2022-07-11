@@ -23,6 +23,15 @@ export default function TokenView({
     // staticReservePriceOfRedeemable, reserveSymbol, consoleData, consoleColor, redeemableInitialSupply
   }: tokenViewProps )
 {
+
+  // this needs to be here as id is within the router
+  let {id}: any = useParams();
+  console.log(`The ID: ${id}`);
+  // set token address by url instead of t= (check line 80 onwards works in app.tsx for getting the tokenData)
+  useEffect(() => {
+    setTokenAddress(id);
+  }, []);
+
   return (
     <>
       { faucetView && (

@@ -8,7 +8,7 @@ import { connect } from "./connect.js"; // a very basic web3 connection implemen
 import {CircularProgress} from "@mui/material";
 import AdminPanelView from "./components/DeployPanelView";
 import TokenView from "./components/TokenView";
-import TokenSettingsView from "./components/TokenSettingsView";
+import TokenDashboardView from "./components/TokenDashboardView";
 
 declare var process : {
   env: {
@@ -70,12 +70,6 @@ function App() {
   //     setTokenAddress(tParam);
   //   }
   // },[]);
-
-  let {id}: any = useParams();
-  // set token address by url instead of t= (check line 80 onwards works in app.tsx for getting the tokenData)
-  useEffect(() => {
-    setTokenAddress(id);
-  }, []);
 
   // basic connection to web3 wallet
   useEffect(() => {
@@ -282,15 +276,15 @@ function App() {
         />
 
         <Route
-          key={'token-settings'}
-          path="/:id/settings"
+          key={'token-dashboard'}
+          path="/:id/dashboard"
           element={
-            <TokenSettingsView
+            <TokenDashboardView
               // consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
               // reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
               // reserveInitialSupply={reserveInitialSupply}
               // setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
-              // setTokenAddress={setTokenAddress} faucetView={faucetView}
+              setTokenAddress={setTokenAddress}
             />
           }
         />
