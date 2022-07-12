@@ -101,8 +101,9 @@ export default function DeployPanelView({
         <Typography variant="h4" component="h2" color="black" align="center">
           Configure Faucet Deployment
         </Typography>
+
         <Typography color="black" align="center">
-          A Short Demo of a Rain Protocol ERC20 Faucet, to go along with the tutorials at <a href="https://docs.rainprotocol.xyz">docs.rainprotocol.xyz</a>
+          Rain Protocol ERC20 Faucet Demo, tutorials: <a href="https://docs.rainprotocol.xyz">docs.rainprotocol.xyz</a>
         </Typography>
 
         {/*<Typography color="black" align="center">*/}
