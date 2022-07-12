@@ -76,57 +76,55 @@ export default function Modal({
   }
 
   return (
-    <div>
-      <ModalMaterial
-        open={modalOpen}
-        onClose={handleClose}
-      >
-        <Box component="div" sx={style}>
-          {/*<img className="modalImage" src={displayedImage} alt="#" /><br/>*/}
+    <ModalMaterial
+      open={modalOpen}
+      onClose={handleClose}
+    >
+      <Box component="div" sx={style}>
+        {/*<img className="modalImage" src={displayedImage} alt="#" /><br/>*/}
 
-          {/*todo create graph of transaction costs*/}
+        {/*todo create graph of transaction costs*/}
 
-          <br/>
+        <br/>
+
+        {/*{ !staticReservePriceOfRedeemable.includes('e') && (*/}
+          <Bar options={options} data={data} />
+        {/*)}*/}
+
+        <br/>
+
+        {/*todo pass the address in url when passing*/}
+        <Typography className="modalText">
+          These <b>{reserveSymbol}</b> can be used as the <b>Reserve Token</b> in the <a href={`https://rain-voucher-sale.unegma.work?t=${tokenAddress}`} target="_blank">Rain Voucher Sale (link passes <b>{reserveSymbol}</b> address).</a>
+        </Typography><br/>
+
+        <Typography className="modalText">
+          To see these tokens in your Wallet, you may need to add the address (<b>{tokenAddress}</b>) for <b>{reserveSymbol}</b>.
+        </Typography><br/>
+
+        { consoleColor === 'red' && (
+          <Typography className="modalTextRed">{consoleData}</Typography>
+        )}
+
+        { consoleColor === 'green' && (
+          <Typography className="modalTextGreen">{consoleData}</Typography>
+        )}
+
+        <br/>
+
+        <div className="buttons-box">
+          <Button disabled={buttonLock} className="fifty-percent-button" variant="outlined" onClick={() => {setModalOpen(false)}}>Close</Button>
 
           {/*{ !staticReservePriceOfRedeemable.includes('e') && (*/}
-            <Bar options={options} data={data} />
+            <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateClaim}>Get {reserveSymbol}!</Button>
+          {/*)}*/}
+          {/*{ staticReservePriceOfRedeemable.includes('e')  && (*/}
+          {/*  <Button disabled={buttonLock} className="fifty-percent-button" variant="contained">Buy Limit Reached</Button>*/}
           {/*)}*/}
 
-          <br/>
+        </div>
 
-          {/*todo pass the address in url when passing*/}
-          <Typography className="modalText">
-            These <b>{reserveSymbol}</b> can be used as the <b>Reserve Token</b> in the <a href={`https://rain-voucher-sale.unegma.work?t=${tokenAddress}`} target="_blank">Rain Voucher Sale (link passes <b>{reserveSymbol}</b> address).</a>
-          </Typography><br/>
-
-          <Typography className="modalText">
-            To see these tokens in your Wallet, you may need to add the address (<b>{tokenAddress}</b>) for <b>{reserveSymbol}</b>.
-          </Typography><br/>
-
-          { consoleColor === 'red' && (
-            <Typography className="modalTextRed">{consoleData}</Typography>
-          )}
-
-          { consoleColor === 'green' && (
-            <Typography className="modalTextGreen">{consoleData}</Typography>
-          )}
-
-          <br/>
-
-          <div className="buttons-box">
-            <Button disabled={buttonLock} className="fifty-percent-button" variant="outlined" onClick={() => {setModalOpen(false)}}>Close</Button>
-
-            {/*{ !staticReservePriceOfRedeemable.includes('e') && (*/}
-              <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateClaim}>Get {reserveSymbol}!</Button>
-            {/*)}*/}
-            {/*{ staticReservePriceOfRedeemable.includes('e')  && (*/}
-            {/*  <Button disabled={buttonLock} className="fifty-percent-button" variant="contained">Buy Limit Reached</Button>*/}
-            {/*)}*/}
-
-          </div>
-
-        </Box>
-      </ModalMaterial>
-    </div>
+      </Box>
+    </ModalMaterial>
   );
 }
