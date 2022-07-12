@@ -71,12 +71,15 @@ export default function Modal({
     ],
   };
 
+  function handleClose() {
+    setModalOpen(false)
+  }
+
   return (
     <div>
       <ModalMaterial
         open={modalOpen}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        onClose={handleClose}
       >
         <Box component="div" sx={style}>
           {/*<img className="modalImage" src={displayedImage} alt="#" /><br/>*/}
