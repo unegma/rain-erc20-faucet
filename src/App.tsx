@@ -16,6 +16,7 @@ declare var process : {
     REACT_APP_RESERVE_SYMBOL: string
     REACT_APP_RESERVE_ERC20_DECIMALS: string
     REACT_APP_RESERVE_INITIAL_SUPPLY: string
+    REACT_APP_BASE_URL: string
   }
 }
 
@@ -270,7 +271,7 @@ function App() {
               reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
               reserveInitialSupply={reserveInitialSupply}
               setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
-              setTokenAddress={setTokenAddress} faucetView={faucetView}
+              setTokenAddress={setTokenAddress} faucetView={faucetView} BASE_URL={process.env.REACT_APP_BASE_URL}
             />
           }
         />
