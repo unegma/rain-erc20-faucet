@@ -6,7 +6,7 @@ import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
 import Button from "@mui/material/Button";
 import {Bar} from "react-chartjs-2";
-import React from "react";
+import React, { Suspense } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -16,6 +16,9 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import {Environment, OrbitControls} from "@react-three/drei";
+import {Canvas} from "@react-three/fiber";
+import ReserveToken from "./ReserveToken";
 
 ChartJS.register(
   CategoryScale,
@@ -106,11 +109,18 @@ export default function DeployPanelView({
           Rain Protocol ERC20 Faucet Demo, tutorials: <a href="https://docs.rainprotocol.xyz">docs.rainprotocol.xyz</a>
         </Typography>
 
-        {/*<Typography color="black" align="center">*/}
-        {/*  <a href="https://rain-shoe-sale.unegma.work" target="_blank">These can be used, for example, as 'Reserve Tokens' in a Sale, as here</a>*/}
-        {/*</Typography>*/}
+        <Canvas hidden={!(adminConfigPage !== 1)} className="the-canvas-deploypanel" camera={{ position: [0, 0, 20], fov: 20 }} performance={{ min: 0.1 }}>
+          <ambientLight intensity={0.1} />
+          <directionalLight intensity={0.01} position={[5, 25, 20]} />
+          <Suspense fallback={null}>
+            {/*<Vouchers modalOpen={modalOpen} setModalOpen={setModalOpen} amount={rTKNAvailable} redeemableSymbol={redeemableSymbol}/>*/}
+            <ReserveToken rotation={[1,1,1]} reserveSymbol={reserveSymbol} />
+            <Environment preset="studio" />
+          </Suspense>
+          <OrbitControls autoRotate autoRotateSpeed={1} enableZoom={false} enablePan={false} enableRotate={false} />
+          {/*<OrbitControls enableZoom={true} enablePan={true} enableRotate={true} />*/}
+        </Canvas>
 
-        <img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />
 
         { adminConfigPage === 0 && (
           <>
