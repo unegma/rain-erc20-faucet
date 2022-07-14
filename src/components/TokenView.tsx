@@ -5,7 +5,7 @@ import {
 import NavBar from "./NavBar";
 import Modal from "./Modal";
 import {Canvas} from "@react-three/fiber";
-import {ContactShadows, OrbitControls} from "@react-three/drei";
+import {ContactShadows, Html, OrbitControls} from "@react-three/drei";
 import Fountain from "./Fountain";
 import Sign from "./Sign";
 
@@ -53,7 +53,7 @@ export default function TokenView({
               <spotLight position={[1, 6, 1.5]} angle={0.2} penumbra={1} intensity={2.5} castShadow shadow-mapSize={[2048, 2048]} />
               <spotLight position={[-5, 5, -1.5]} angle={0.03} penumbra={1} intensity={4} castShadow shadow-mapSize={[1024, 1024]} />
               <spotLight position={[5, 5, -5]} angle={0.3} penumbra={1} intensity={4} castShadow={true} shadow-mapSize={[256, 256]} color="#ffffc0" />
-              <Suspense fallback={null}>
+              <Suspense fallback={<Html className="black">loading..</Html>}>
                 <Fountain position={[-5,0,1]} rotation={[1.9,3.5,0]} />
                 <Sign position={[9,-10,-4]} rotation={[2.8,1.5,-1.1]} scale={0.08} reserveSymbol={reserveSymbol} />
                 <ContactShadows frames={1} rotation-x={[Math.PI / 2]} position={[0, -0.33, 0]} far={0.4} width={2} height={2} blur={4} />

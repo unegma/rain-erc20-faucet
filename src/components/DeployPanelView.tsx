@@ -16,7 +16,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import {Environment, OrbitControls} from "@react-three/drei";
+import {Environment, Html, OrbitControls} from "@react-three/drei";
 import {Canvas} from "@react-three/fiber";
 import ReserveToken from "./ReserveToken";
 
@@ -112,8 +112,7 @@ export default function DeployPanelView({
         <Canvas hidden={!(adminConfigPage !== 1)} className="the-canvas-deploypanel" camera={{ position: [0, 0, 20], fov: 20 }} performance={{ min: 0.1 }}>
           <ambientLight intensity={0.1} />
           <directionalLight intensity={0.01} position={[5, 25, 20]} />
-          <Suspense fallback={null}>
-            {/*<Vouchers modalOpen={modalOpen} setModalOpen={setModalOpen} amount={rTKNAvailable} redeemableSymbol={redeemableSymbol}/>*/}
+          <Suspense fallback={<Html className="black">loading..</Html>}>
             <ReserveToken rotation={[1,1,1]} reserveSymbol={reserveSymbol} />
             <Environment preset="studio" />
           </Suspense>
