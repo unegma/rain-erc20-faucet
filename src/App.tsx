@@ -47,9 +47,6 @@ function App() {
   const [reserveName, setReserveName] = React.useState(process.env.REACT_APP_RESERVE_NAME);
   const [reserveSymbol, setReserveSymbol] = React.useState(process.env.REACT_APP_RESERVE_SYMBOL);
 
-  // // a bit isolated because not taken from .env and only used in the Sale (and got from getSaleData())
-  // const [redeemableTokenAddress, setRedeemableTokenAddress] = React.useState("");
-
   // these must be the same as the above in .env
   function resetToDefault() {
     setReserveDecimals(process.env.REACT_APP_RESERVE_ERC20_DECIMALS);
@@ -59,18 +56,6 @@ function App() {
   }
 
   /** UseEffects **/
-
-  // // run once on render and check url parameters
-  // useEffect(() => {
-  //   let queryString = new URLSearchParams(window.location.search);
-  //   let tParam = queryString.get('t');
-  //
-  //   if (typeof tParam !== 'undefined' && tParam) {
-  //     console.log(`tokenAddress is ${tParam}`) // why logged twice: https://stackoverflow.com/questions/60971185/why-does-create-react-app-initialize-twice
-  //     setFaucetView(true);
-  //     setTokenAddress(tParam);
-  //   }
-  // },[]);
 
   // basic connection to web3 wallet
   useEffect(() => {
@@ -120,14 +105,9 @@ function App() {
       const tokenContract = new rainSDK.EmissionsERC20(tokenAddress, signer);
       console.log(tokenContract);
 
-      // setReserveTokenAddress(reserve.address);
       setReserveName(await tokenContract.name());
       setReserveSymbol(await tokenContract.symbol());
       setReserveDecimals((await tokenContract.decimals()).toString());
-
-      // console.log(`Shoes in Sale: ${amountOfShoes}`); // todo check if this changes when they are bought
-      // setRedeemableInitialSupply(amountOfShoes.toString()); // TODO THIS SHOULD BE REMAINING SHOES NOT TOTAL SUPPLY
-
       setFaucetView(true);
     } catch(err) {
       console.log('Error getting token data', err);
@@ -200,7 +180,6 @@ function App() {
 
       setConsoleData(`Complete!`);
       setConsoleColor(`green`); // todo add to struct
-    //   setSaleComplete(true);
     //   setButtonLock(false); // don't set to true to disincentive users from continuing to click it
       setLoading(false);
     } catch(err) {
@@ -222,29 +201,6 @@ function App() {
       { loading && (
         <div className="deploying"><CircularProgress /></div>
       )}
-
-      {/*if nothing is set, show admin panel*/}
-      {/*{ !faucetView && (*/}
-      {/*  <AdminPanelView*/}
-      {/*    adminConfigPage={adminConfigPage} reserveName={reserveName}*/}
-      {/*    handleChangeReserveName={handleChangeReserveName} reserveSymbol={reserveSymbol}*/}
-      {/*    handleChangeReserveSymbol={handleChangeReserveSymbol}*/}
-      {/*    reserveInitialSupply={reserveInitialSupply}*/}
-      {/*    handleChangeReserveInitialSupply={handleChangeReserveInitialSupply} resetToDefault={resetToDefault}*/}
-      {/*    setAdminConfigPage={setAdminConfigPage} buttonLock={buttonLock} deployToken={deployToken}*/}
-      {/*  />*/}
-      {/*)}*/}
-
-      {/*{ faucetView && (*/}
-      {/*  <TokenView*/}
-      {/*    consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}*/}
-      {/*    reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}*/}
-      {/*    reserveInitialSupply={reserveInitialSupply}*/}
-      {/*    setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}*/}
-      {/*  />*/}
-      {/*)}*/}
-
-{/*todo change 'admin panel' to deploypanel*/}
 
       <Routes>
         <Route
@@ -281,10 +237,6 @@ function App() {
           path="/:id/dashboard"
           element={
             <TokenDashboardView
-              // consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
-              // reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
-              // reserveInitialSupply={reserveInitialSupply}
-              // setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
               setTokenAddress={setTokenAddress}
             />
           }
