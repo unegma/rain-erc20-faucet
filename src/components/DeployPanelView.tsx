@@ -19,6 +19,7 @@ import {
 import {Environment, Html, OrbitControls} from "@react-three/drei";
 import {Canvas} from "@react-three/fiber";
 import ReserveToken from "./ReserveToken";
+const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
 
 ChartJS.register(
   CategoryScale,
@@ -28,9 +29,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-// const displayedImage = 'https://assets.unegma.net/unegma.work/rain-shoe-sale.unegma.work/shoe-voucher.jpg'
-const displayedImage = 'https://assets.unegma.net/unegma.work/rain-erc20-faucet.unegma.work/faucet.jpg';
 
 type adminPanelProps = {
   adminConfigPage: number
@@ -171,7 +169,7 @@ export default function DeployPanelView({
             </Typography>
 
             <Typography color="red">
-              Please make sure you are connected to Mumbai Matic testnet.
+              Please make sure you are connected to the <b className='red'>{CHAIN_NAME}</b> Network.
             </Typography>
 
             <Typography color="black">
