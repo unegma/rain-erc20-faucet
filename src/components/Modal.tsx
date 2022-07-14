@@ -96,7 +96,7 @@ export default function Modal({
 
 
         <Typography className="modalText">
-          To see these tokens in your Wallet, you may need to add the address <b>{tokenAddress}</b> for <b>{reserveSymbol}</b>.
+          To see these tokens in your Wallet, you may need to add the address: <b>{tokenAddress}</b> for <b>{reserveSymbol}</b>.
         </Typography><br/>
 
         <Typography className="modalText">
