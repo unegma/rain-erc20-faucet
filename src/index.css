@@ -173,8 +173,8 @@ body {
   background-color: black;
   font-size: 16px;
   padding: 10px;
-  bottom: 10px;
-  right: 10px;
+  bottom: 5px;
+  right: 5px;
 }
 
 .deploy-own a {

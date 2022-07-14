@@ -4,13 +4,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Modal as ModalMaterial } from '@mui/material';
 import {Bar} from "react-chartjs-2";
+const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
 // const displayedImage = 'https://assets.unegma.net/unegma.work/rain-erc20-faucet.unegma.work/faucet.jpg'
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '30vw',
+  width: '42vw',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -93,13 +94,17 @@ export default function Modal({
 
         <br/>
 
-        {/*todo pass the address in url when passing*/}
+
+        <Typography className="modalText">
+          To see these tokens in your Wallet, you may need to add the address <b>{tokenAddress}</b> for <b>{reserveSymbol}</b>.
+        </Typography><br/>
+
         <Typography className="modalText">
           These <b>{reserveSymbol}</b> can be used as the <b>Reserve Token</b> in the <a href={`https://rain-voucher-sale.unegma.work?t=${tokenAddress}`} target="_blank">Rain Voucher Sale (link passes <b>{reserveSymbol}</b> address).</a>
         </Typography><br/>
 
         <Typography className="modalText">
-          To see these tokens in your Wallet, you may need to add the address (<b>{tokenAddress}</b>) for <b>{reserveSymbol}</b>.
+          Make sure you are connected to the <b className='modalTextRed'>{CHAIN_NAME}</b> Network.
         </Typography><br/>
 
         { consoleColor === 'red' && (

@@ -8,6 +8,7 @@ import {Canvas} from "@react-three/fiber";
 import {ContactShadows, Html, OrbitControls} from "@react-three/drei";
 import Fountain from "./Fountain";
 import Sign from "./Sign";
+const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
 
 type tokenViewProps = {
   reserveName: string, reserveSymbol: string, modalOpen: any, setModalOpen: any, reserveInitialSupply: any, buttonLock: any, tokenAddress: string,
@@ -33,7 +34,7 @@ export default function TokenView({
       { faucetView && (
         <>
           <NavBar string={`${reserveName} (${reserveSymbol}) Faucet!`} stringRight={``} />
-          <p className='deploy-own'><a href={`${BASE_URL}`}>Deploy Your Own</a></p>
+          <p className='deploy-own'>Make sure you are connected to the <b className='modalTextRed'>{CHAIN_NAME}</b> Network. <a href={`${BASE_URL}`}>Click Here to Deploy Your Own Reserve Token!</a></p>
 
           <div className="canvasContainer">
             <Modal

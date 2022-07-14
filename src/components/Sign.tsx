@@ -20,9 +20,19 @@ export default function Model({ reserveSymbol, ...props }: any) {
   return (
     <group ref={group} {...props} dispose={null}>
       <Text
-        position={[-20, 65, -7.58]}
+        position={[-20, 70, -7.58]}
         rotation={[0,10.2,-0.06]}
-        fontSize={10}
+        fontSize={8}
+        // lineHeight={0.8}
+        // material-toneMapped={false}
+        color='#333333'
+      >
+        Click For:
+      </Text>
+      <Text
+        position={[-20, 62, -7.58]}
+        rotation={[0,10.2,-0.06]}
+        fontSize={8}
         // lineHeight={0.8}
         // material-toneMapped={false}
         color='#333333'
