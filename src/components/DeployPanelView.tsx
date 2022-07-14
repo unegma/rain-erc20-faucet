@@ -173,7 +173,7 @@ export default function DeployPanelView({
             </Typography>
 
             <Typography color="black">
-              Please be aware, this example does not (currently) have strict checking for all fields, and you will not recover the cost for network fees (gas) if a deployment fails*.
+              Please be aware, this example does not (currently) have strict checking for all fields, and you will not recover the cost for network fees (gas) if a deployment fails.
             </Typography>
 
             <div className="buttons-box">
