@@ -33,7 +33,7 @@ export default function TokenView({
     <>
       { faucetView && (
         <>
-          <NavBar string={`${reserveName} (${reserveSymbol}) Faucet!`} stringRight={``} />
+          <NavBar string={`${reserveSymbol} Faucet (${reserveName})`} stringRight={``} />
           <p className='deploy-own'>Make sure you are connected to the <b className='modalTextRed'>{CHAIN_NAME}</b> Network. <a href={`${BASE_URL}`}>Click Here to Deploy Your Own Reserve Token!</a></p>
 
           <div className="canvasContainer">
