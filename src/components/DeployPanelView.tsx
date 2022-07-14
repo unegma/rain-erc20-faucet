@@ -59,7 +59,7 @@ export default function DeployPanelView({
       },
       title: {
         display: true,
-        text: 'Upcoming Transaction Costs (Estimated MATIC)',
+        text: 'Upcoming Transaction Cost Ratios (Estimated MATIC Ratios based on costs from: 2022-05-30T15:32:44Z)',
       },
     },
   };
@@ -173,12 +173,7 @@ export default function DeployPanelView({
             </Typography>
 
             <Typography color="black">
-              Ratios and costs based on tests taken around the following time: 2022-06-29T05:50:00Z
-            </Typography>
-
-
-            <Typography color="black">
-              Please be aware, this example does not have strict checking, and so you will not recover the cost of network fees (gas) if a deployment fails.
+              Please be aware, this example does not (currently) have strict checking for all fields, and you will not recover the cost for network fees (gas) if a deployment fails*.
             </Typography>
 
             <div className="buttons-box">
