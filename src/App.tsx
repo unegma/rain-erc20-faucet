@@ -4,11 +4,13 @@ import {
 } from "react-router-dom";
 import {ethers, Signer} from "ethers";
 import * as rainSDK from "rain-sdk";
-import { connect } from "./connect.js"; // a very basic web3 connection implementation
+// import { connect } from "./connect.js"; // a very basic web3 connection implementation
 import {CircularProgress} from "@mui/material";
 import AdminPanelView from "./components/DeployPanelView";
 import TokenView from "./components/TokenView";
 import TokenDashboardView from "./components/TokenDashboardView";
+import {useWeb3React} from "@web3-react/core";
+import {Web3Provider} from "@ethersproject/providers";
 
 declare var process : {
   env: {
@@ -17,8 +19,10 @@ declare var process : {
     REACT_APP_RESERVE_ERC20_DECIMALS: string
     REACT_APP_RESERVE_INITIAL_SUPPLY: string
     REACT_APP_BASE_URL: string
+    REACT_APP_CHAIN_ID: string
   }
 }
+const SUBGRAPH_ENDPOINT = rainSDK.AddressBook.getSubgraphEndpoint(parseInt(process.env.REACT_APP_CHAIN_ID));
 
 /**
  * App
@@ -26,6 +30,9 @@ declare var process : {
 function App() {
 
   /** State Config **/
+
+  const context = useWeb3React<Web3Provider>(); // todo check because this web3provider is from ethers
+  const { connector, library, chainId, account, activate, deactivate, active, error }: any = context;
 
   // high level
   const [signer, setSigner] = useState<Signer|undefined>(undefined);
@@ -58,18 +65,25 @@ function App() {
   /** UseEffects **/
 
   // basic connection to web3 wallet
+  // useEffect(() => {
+  //   makeWeb3Connection(); // todo test what happens if not signed in
+  // },[]);
+
   useEffect(() => {
-    makeWeb3Connection(); // todo test what happens if not signed in
-  },[]);
+    setSigner(library?.getSigner());
+    setAddress(account);
+  }, [library, account]);
 
   // this relies on useEffect above to get tokenAddress from url // todo may be able to merge this one with the above one
   // todo check this section because it is different in all frontends
+  // TODO CHECK THIS WORKS WITH INJECTED CONNECTOR
+  // TODO CHECK IF THIS WORKS WITHOUT SIGNER ON SALE EXAMPLE
   useEffect(() => {
     // todo check this still works with new url parameter
-    if (tokenAddress && signer) {
-      getTokenData(); // get saleContract and then get amount of shoes, and then load shoes
+    if (tokenAddress) {
+      getTokenData(tokenAddress);
     }
-  }, [tokenAddress, signer]); // only get sale data when signer and saleAddress have been loaded // monitor saleComplete so that the amount displayed on the button is updated when the sale is finished
+  }, [tokenAddress]); // only get sale data when signer and saleAddress have been loaded // monitor saleComplete so that the amount displayed on the button is updated when the sale is finished
 
   /** Handle Form Inputs **/
 
@@ -85,34 +99,83 @@ function App() {
 
   /** Functions **/
 
-  async function makeWeb3Connection() {
-    try {
-      const {signer, address} = await connect(); // get the signer and account address using a very basic connection implementation
-      setSigner(signer);
-      setAddress(address);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async function makeWeb3Connection() {
+  //   try {
+  //     const {signer, address} = await connect(); // get the signer and account address using a very basic connection implementation
+  //     setSigner(signer);
+  //     setAddress(address);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+
+
 
   /**
    * Get Token Data from blockchain instead of .env
    * THIS WILL ALL BE AS IF THERE IS NO .ENV ON SALE LOAD
    */
-  async function getTokenData() {
+  async function getTokenData(tokenAddress: string) {
     try {
-      // @ts-ignore
-      const tokenContract = new rainSDK.EmissionsERC20(tokenAddress, signer);
-      console.log(tokenContract);
+      let subgraphData = await fetch(SUBGRAPH_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+            query {
+              emissionsERC20S (where: {id: "${tokenAddress.toLowerCase()}"}) {
+                id
+                symbol
+                name
+                decimals
+              }
+            }
+          `
+        })
+      });
 
-      setReserveName(await tokenContract.name());
-      setReserveSymbol(await tokenContract.symbol());
-      setReserveDecimals((await tokenContract.decimals()).toString());
+      // the response will then come back as promise, the data of which will need to be accessed as such:
+      subgraphData = await subgraphData.json();
+      console.log(subgraphData);
+
+      // @ts-ignore
+      subgraphData = subgraphData.data.emissionsERC20S[0]; // should only be one here anyway. // todo--question is there potential for 'too quick' to cause it not to exist yet in the subgraph?
+      if (subgraphData === undefined) throw new Error('NO_SUBGRAPH_DATA');
+
+      console.log(`Result: data from subgraph with endpoint ${SUBGRAPH_ENDPOINT}:`);
+      // @ts-ignore
+      setReserveName(subgraphData.name);
+      // @ts-ignore
+      setReserveSymbol(subgraphData.symbol);
+      // @ts-ignore
+      setReserveDecimals((subgraphData.decimals.toString()));
       setFaucetView(true);
-    } catch(err) {
-      console.log('Error getting token data', err);
+    } catch (err) {
+      console.log(err);
     }
   }
+
+
+  // /**
+  //  * Get Token Data from blockchain instead of .env
+  //  * THIS WILL ALL BE AS IF THERE IS NO .ENV ON SALE LOAD
+  //  */
+  // async function getTokenData(tokenAddress: string) {
+  //   try {
+  //     // @ts-ignore
+  //     const tokenContract = new rainSDK.EmissionsERC20(tokenAddress, new ethers.VoidSigner(tokenAddress, provider) );
+  //     console.log(tokenContract);
+  //
+  //     setReserveName(await tokenContract.name());
+  //     setReserveSymbol(await tokenContract.symbol());
+  //     setReserveDecimals((await tokenContract.decimals()).toString());
+  //     setFaucetView(true);
+  //   } catch(err) {
+  //     console.log('Error getting token data', err);
+  //   }
+  // }
 
   /**
    * Deploy a Sale and Start it (2txs)
@@ -214,6 +277,7 @@ function App() {
               reserveInitialSupply={reserveInitialSupply}
               handleChangeReserveInitialSupply={handleChangeReserveInitialSupply} resetToDefault={resetToDefault}
               setAdminConfigPage={setAdminConfigPage} buttonLock={buttonLock} deployToken={deployToken}
+              address={address} setAddress={setAddress}
             />
           }
         />
@@ -228,6 +292,7 @@ function App() {
               reserveInitialSupply={reserveInitialSupply}
               setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
               setTokenAddress={setTokenAddress} faucetView={faucetView} BASE_URL={process.env.REACT_APP_BASE_URL}
+              address={address} setAddress={setAddress}
             />
           }
         />

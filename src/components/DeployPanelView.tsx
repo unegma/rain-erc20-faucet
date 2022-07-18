@@ -37,6 +37,8 @@ type adminPanelProps = {
   reserveInitialSupply: any, handleChangeReserveInitialSupply: any,
   resetToDefault: any, setAdminConfigPage: any,
   buttonLock: any, deployToken: any
+  // todo might be able to change how these are imported
+  address: string, setAddress: any
 }
 
 export default function DeployPanelView({
@@ -45,7 +47,9 @@ export default function DeployPanelView({
   reserveSymbol, handleChangeReserveSymbol,
   reserveInitialSupply, handleChangeReserveInitialSupply,
   resetToDefault, setAdminConfigPage,
-  buttonLock, deployToken
+  buttonLock, deployToken,
+  // todo might be able to change how these are imported
+  address, setAddress
   } : adminPanelProps)
 {
 
@@ -87,7 +91,7 @@ export default function DeployPanelView({
 
   return (
     <>
-      <NavBar />
+      <NavBar address={address} setAddress={setAddress} />
 
       <Box
         className="admin-form"

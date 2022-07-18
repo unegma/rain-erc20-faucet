@@ -12,12 +12,16 @@ const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet)
 
 type tokenViewProps = {
   reserveName: string, reserveSymbol: string, modalOpen: any, setModalOpen: any, reserveInitialSupply: any, buttonLock: any, tokenAddress: string,
-  consoleColor: any, consoleData: any, initiateClaim: any, setTokenAddress: any, faucetView: any, BASE_URL: string
+  consoleColor: any, consoleData: any, initiateClaim: any, setTokenAddress: any, faucetView: any,
+  // todo might be able to change how these are imported
+  BASE_URL: string, address: string, setAddress: any
 }
 
 export default function TokenView({
     reserveName, reserveSymbol, modalOpen, setModalOpen, reserveInitialSupply, buttonLock, tokenAddress,
-    consoleData, consoleColor, initiateClaim, setTokenAddress, faucetView, BASE_URL
+    consoleData, consoleColor, initiateClaim, setTokenAddress, faucetView,
+    // todo might be able to change how these are imported
+    BASE_URL, address, setAddress
   }: tokenViewProps )
 {
 
@@ -33,7 +37,7 @@ export default function TokenView({
     <>
       { faucetView && (
         <>
-          <NavBar string={`${reserveSymbol} Faucet (${reserveName})`} stringRight={``} />
+          <NavBar string={`${reserveSymbol} Faucet (${reserveName})`} stringRight={``} address={address} setAddress={setAddress} />
           <p className='deploy-own'>Make sure you are connected to the <b className='modalTextRed'>{CHAIN_NAME}</b> Network. <a href={`${BASE_URL}`}>Click Here to Deploy Your Own Reserve Token!</a></p>
 
           <div className="canvasContainer">
