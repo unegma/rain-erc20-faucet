@@ -108,14 +108,18 @@ export default function DeployPanelView({
           Configure Faucet Deployment
         </Typography>
 
-        <Typography color="black" align="center">
-          Rain Protocol ERC20 Faucet Demo, tutorials: <a href="https://docs.rainprotocol.xyz">docs.rainprotocol.xyz</a>
-        </Typography>
+        { adminConfigPage === 0 && (
+          <>
+            <Typography color="black" align="center">
+              Rain Protocol ERC20 Faucet Demo, tutorials: <a href="https://docs.rainprotocol.xyz">docs.rainprotocol.xyz</a>
+            </Typography>
 
-        <Typography color="black" align="center">
-          {/*todo change to rUSD?*/}
-         <a href={`${BASE_URL}/0xCCe6fb1921497715163F4a038521d3145f308652`} target="_blank">Example Faucet: Rain USDC (rUSDC)</a>
-        </Typography>
+            <Typography color="black" align="center">
+              {/*todo change to rUSD?*/}
+             <a href={`${BASE_URL}/0xCCe6fb1921497715163F4a038521d3145f308652`} target="_blank">Example Faucet: Rain USD (rUSD)</a>
+            </Typography>
+          </>
+        )}
 
         <Canvas hidden={!(adminConfigPage !== 1)} className="the-canvas-deploypanel" camera={{ position: [0, 0, 20], fov: 20 }} performance={{ min: 0.1 }}>
           <ambientLight intensity={0.1} />
