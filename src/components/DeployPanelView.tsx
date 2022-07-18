@@ -20,6 +20,7 @@ import {Environment, Html, OrbitControls} from "@react-three/drei";
 import {Canvas} from "@react-three/fiber";
 import ReserveToken from "./ReserveToken";
 const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 ChartJS.register(
   CategoryScale,
@@ -109,6 +110,11 @@ export default function DeployPanelView({
 
         <Typography color="black" align="center">
           Rain Protocol ERC20 Faucet Demo, tutorials: <a href="https://docs.rainprotocol.xyz">docs.rainprotocol.xyz</a>
+        </Typography>
+
+        <Typography color="black" align="center">
+          {/*todo change to rUSD?*/}
+         <a href={`${BASE_URL}/0xCCe6fb1921497715163F4a038521d3145f308652`} target="_blank">Example Faucet: Rain USDC (rUSDC)</a>
         </Typography>
 
         <Canvas hidden={!(adminConfigPage !== 1)} className="the-canvas-deploypanel" camera={{ position: [0, 0, 20], fov: 20 }} performance={{ min: 0.1 }}>

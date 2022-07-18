@@ -17,7 +17,7 @@ export default function NavBar({string, stringRight, address, setAddress}: {stri
       <AppBar position="fixed" color="transparent">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {!string ? 'Rain Protocol ERC20 Faucet' : string}
+            {!string ? 'Configure ERC20 Faucet' : string}
           </Typography>
 
           <Web3ConnectionButtons setAddress={setAddress} className='connect-button' />
