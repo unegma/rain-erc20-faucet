@@ -214,8 +214,11 @@ function App() {
       console.log(`Result: deployed emissionsErc20, with address: ${emissionsERC20Address} and sent you ${reserveInitialSupply} tokens.`, emissionsErc20);
       console.log('Info: to see the tokens in your Wallet, add a new token with the address above. ALSO, REMEMBER TO NOTE DOWN THIS ADDRESS, AS IT WILL BE USED AS RESERVE_TOKEN IN FUTURE TUTORIALS.');
 
-      console.log(`Redirecting to Token Faucet: ${emissionsERC20Address}`);
-      window.location.replace(`${window.location.origin}/${emissionsERC20Address}`);
+      // wait so subgraph has time to index
+      setTimeout(() => {
+        console.log(`Redirecting to Token Faucet: ${emissionsERC20Address}`);
+        window.location.replace(`${window.location.origin}/${emissionsERC20Address}`);
+      }, 5000)
     } catch (err) {
       console.log(err);
       setLoading(false);
