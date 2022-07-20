@@ -29,7 +29,7 @@ const modalStyle = {
 
 
 enum ConnectorNames {
-  Metamask = 'Metamask/Browser',
+  Metamask = 'Metamask',
   WalletConnect = 'WalletConnect'
 }
 
@@ -112,6 +112,11 @@ export default function Web3ConnectionButtons({setAddress, setSettingsOpen}: any
               const activating = currentConnector === activatingConnector;
               const connected = currentConnector === connector;
               const disabled = !triedEager || !!activatingConnector || connected || !!error;
+
+              // bit of a hacky override
+              if (name === 'Metamask') {
+                name = 'Metamask/Browser'
+              }
 
               return (
                 (!active && !error) && (
