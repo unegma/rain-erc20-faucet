@@ -6,9 +6,9 @@ import {ethers, Signer} from "ethers";
 import * as rainSDK from "rain-sdk";
 // import { connect } from "./connect.js"; // a very basic web3 connection implementation
 import {CircularProgress} from "@mui/material";
-import AdminPanelView from "./components/DeployPanelView";
-import TokenView from "./components/TokenView";
-import TokenDashboardView from "./components/TokenDashboardView";
+import AdminPanelView from "./components/panels/DeployPanelView";
+import TokenView from "./components/panels/TokenView";
+import TokenDashboardView from "./components/panels/TokenDashboardView";
 import {useWeb3React} from "@web3-react/core";
 import {Web3Provider} from "@ethersproject/providers";
 

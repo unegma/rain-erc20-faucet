@@ -1,4 +1,4 @@
-import NavBar from "./NavBar";
+import NavBar from "../layout/NavBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
@@ -18,7 +18,7 @@ import {
 } from 'chart.js';
 import {Environment, Html, OrbitControls} from "@react-three/drei";
 import {Canvas} from "@react-three/fiber";
-import ReserveToken from "./ReserveToken";
+import ReserveToken from "../3d/ReserveToken";
 import {InputAdornment} from "@mui/material";
 const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
 const BASE_URL = process.env.REACT_APP_BASE_URL;

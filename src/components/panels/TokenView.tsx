@@ -2,12 +2,12 @@ import React, {Suspense, useEffect} from "react";
 import {
   useParams
 } from "react-router-dom";
-import NavBar from "./NavBar";
+import NavBar from "../layout/NavBar";
 import Modal from "./Modal";
 import {Canvas} from "@react-three/fiber";
 import {ContactShadows, Html, OrbitControls} from "@react-three/drei";
-import Fountain from "./Fountain";
-import Sign from "./Sign";
+import Fountain from "../3d/Fountain";
+import Sign from "../3d/Sign";
 const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
 
 type tokenViewProps = {
