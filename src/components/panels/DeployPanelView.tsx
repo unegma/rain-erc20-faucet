@@ -119,6 +119,9 @@ export default function DeployPanelView({
               {/*todo change to rUSD?*/}
              <a href={`${BASE_URL}/0xCCe6fb1921497715163F4a038521d3145f308652`} target="_blank">Click for Example Faucet: Rain USD (rUSD)</a>
             </Typography>
+            <Typography color="black" align="center">
+              <a href="#" target="_blank">See Faucet Deployment demo video</a>
+            </Typography>
           </>
         )}
 
