@@ -185,7 +185,7 @@ export default function DeployPanelView({
             </Typography>
 
             <Typography color="red">
-              Please make sure you are connected to the <b className='red'>{CHAIN_NAME}</b> Network.
+              Please make sure you are connected to the <a href={`https://chainlist.org/?search=mumbai&testnets=true`} target="_blank"><b className='modalTextRed'>{CHAIN_NAME}</b></a> Network.
             </Typography>
 
             <Typography color="black">
