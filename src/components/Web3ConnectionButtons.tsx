@@ -29,7 +29,7 @@ const modalStyle = {
 
 
 enum ConnectorNames {
-  Metamask = 'Metamask',
+  Metamask = 'Metamask/Browser',
   WalletConnect = 'WalletConnect'
 }
 
