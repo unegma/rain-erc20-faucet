@@ -19,6 +19,7 @@ import {
 import {Environment, Html, OrbitControls} from "@react-three/drei";
 import {Canvas} from "@react-three/fiber";
 import ReserveToken from "./ReserveToken";
+import {InputAdornment} from "@mui/material";
 const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -164,6 +165,7 @@ export default function DeployPanelView({
                 id="component-helper"
                 value={reserveInitialSupply}
                 onChange={handleChangeReserveInitialSupply}
+                endAdornment={<InputAdornment position="end">{reserveSymbol}</InputAdornment>}
               />
             </FormControl>
 
