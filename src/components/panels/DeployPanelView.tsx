@@ -117,7 +117,7 @@ export default function DeployPanelView({
 
             <Typography color="black" align="center">
               {/*todo change to rUSD?*/}
-             <a href={`${BASE_URL}/0xCCe6fb1921497715163F4a038521d3145f308652`} target="_blank">Example Faucet: Rain USD (rUSD)</a>
+             <a href={`${BASE_URL}/0xCCe6fb1921497715163F4a038521d3145f308652`} target="_blank">Click for Example Faucet: Rain USD (rUSD)</a>
             </Typography>
           </>
         )}

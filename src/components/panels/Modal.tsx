@@ -96,15 +96,22 @@ export default function Modal({
 
 
         <Typography className="modalText">
-          To see these tokens in your Wallet, you may need to add the address: <b>{tokenAddress}</b> for <b>{reserveSymbol}</b>.
+          To see these tokens in your Wallet, you may need to&nbsp;
+          {/*!! note: this won't work on localhost, needs https !!*/}
+          <a href="#" onClick={(event: any) =>
+            {event.preventDefault(); navigator.clipboard.writeText(tokenAddress);
+              alert(`${tokenAddress} copied to clipboard!`)}}
+          >
+            add the address for <b>{reserveSymbol}</b>
+          </a>.
         </Typography><br/>
 
         <Typography className="modalText">
-          These <b>{reserveSymbol}</b> can be used as the <b>Reserve Token</b> in the <a href={`https://rain-sale.unegma.work?t=${tokenAddress}`} target="_blank">Rain Voucher Sale (link passes <b>{reserveSymbol}</b> address).</a>
+          These <b>{reserveSymbol}</b> can be used <a href={`https://rain-sale.unegma.work?t=${tokenAddress}`} target="_blank">as the <b>Reserve Token</b> in a Rain Sale (link passes address)</a>.
         </Typography><br/>
 
         <Typography className="modalText">
-          Make sure you are connected to the <b className='modalTextRed'>{CHAIN_NAME}</b> Network.
+          Make sure you are connected to the <a href={`https://chainlist.org/?search=mumbai&testnets=true`} target="_blank"><b className='modalTextRed'>{CHAIN_NAME}</b></a> Network (on chainlist.org, toggle 'Testnets').
         </Typography><br/>
 
         { consoleColor === 'red' && (
