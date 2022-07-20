@@ -100,7 +100,7 @@ export default function Modal({
         </Typography><br/>
 
         <Typography className="modalText">
-          These <b>{reserveSymbol}</b> can be used as the <b>Reserve Token</b> in the <a href={`https://rain-voucher-sale.unegma.work?t=${tokenAddress}`} target="_blank">Rain Voucher Sale (link passes <b>{reserveSymbol}</b> address).</a>
+          These <b>{reserveSymbol}</b> can be used as the <b>Reserve Token</b> in the <a href={`https://rain-sale.unegma.work?t=${tokenAddress}`} target="_blank">Rain Voucher Sale (link passes <b>{reserveSymbol}</b> address).</a>
         </Typography><br/>
 
         <Typography className="modalText">
