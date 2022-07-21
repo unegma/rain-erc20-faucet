@@ -229,4 +229,6 @@ body {
 
 .copy-button {
   text-decoration: underline;
+  cursor: pointer;
+  color: green;
 }
