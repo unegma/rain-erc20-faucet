@@ -4,8 +4,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Modal as ModalMaterial } from '@mui/material';
 import {Bar} from "react-chartjs-2";
-const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
-// const displayedImage = 'https://assets.unegma.net/unegma.work/rain-erc20-faucet.unegma.work/faucet.jpg'
+import Warning from "../various/Warning";
+
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -19,22 +19,14 @@ const style = {
 };
 
 type modalProps = {
-  modalOpen: boolean, setModalOpen: any, reserveSymbol: string, reserveInitialSupply: any, buttonLock: any, tokenAddress: string,
-  // initiateBuy: any, buttonLock: boolean, redeemableTokenAddress: string,
-  // staticReservePriceOfRedeemable: any,  redeemableSymbol: string, consoleData: string,
-  initiateClaim: any,
-  consoleData: string,
-  consoleColor: string
+  modalOpen: boolean, setModalOpen: any, reserveSymbol: string, buttonLock: any, tokenAddress: string,
+  initiateClaim: any, consoleData: string, consoleColor: string
 }
 
 export default function Modal({
-    modalOpen, setModalOpen, reserveSymbol, reserveInitialSupply, buttonLock, tokenAddress,
-    // initiateBuy, buttonLock, redeemableTokenAddress, staticReservePriceOfRedeemable,
-    // redeemableSymbol, consoleData, consoleColor}
-    initiateClaim, consoleData, consoleColor
+    modalOpen, setModalOpen, reserveSymbol, buttonLock, tokenAddress, initiateClaim, consoleData, consoleColor
   } : modalProps )
 {
-
 
   const options = {
     responsive: true,
@@ -82,21 +74,13 @@ export default function Modal({
       onClose={handleClose}
     >
       <Box component="div" sx={style}>
-        {/*<img className="modalImage" src={displayedImage} alt="#" /><br/>*/}
-
-        {/*todo create graph of transaction costs*/}
-
         <br/>
-
-        {/*{ !staticReservePriceOfRedeemable.includes('e') && (*/}
-          <Bar options={options} data={data} />
-        {/*)}*/}
-
+        <Bar options={options} data={data} />
         <br/>
 
 
         <Typography className="modalText">
-          To see these tokens in your Wallet, you may need to&nbsp;
+          To see these tokens in your Wallet,&nbsp;
           {/*!! note: this won't work on localhost, needs https !!*/}
           <a href="#" onClick={(event: any) =>
             {event.preventDefault(); navigator.clipboard.writeText(tokenAddress);
@@ -110,9 +94,7 @@ export default function Modal({
           These <b>{reserveSymbol}</b> can be used <a href={`https://rain-sale.unegma.work?t=${tokenAddress}`} target="_blank">as the <b>Reserve Token</b> in a Rain Sale (link passes address)</a>.
         </Typography><br/>
 
-        <Typography className="modalText">
-          Make sure you are connected to the <a href={`https://chainlist.org/?search=mumbai&testnets=true`} target="_blank"><b className='modalTextRed'>{CHAIN_NAME}</b></a> Network (on chainlist.org, toggle 'Testnets').
-        </Typography><br/>
+        <Warning />
 
         { consoleColor === 'red' && (
           <Typography className="modalTextRed">{consoleData}</Typography>
@@ -126,14 +108,7 @@ export default function Modal({
 
         <div className="buttons-box">
           <Button disabled={buttonLock} className="fifty-percent-button" variant="outlined" onClick={() => {setModalOpen(false)}}>Close</Button>
-
-          {/*{ !staticReservePriceOfRedeemable.includes('e') && (*/}
-            <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateClaim}>Get {reserveSymbol}!</Button>
-          {/*)}*/}
-          {/*{ staticReservePriceOfRedeemable.includes('e')  && (*/}
-          {/*  <Button disabled={buttonLock} className="fifty-percent-button" variant="contained">Buy Limit Reached</Button>*/}
-          {/*)}*/}
-
+          <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateClaim}>Get {reserveSymbol}!</Button>
         </div>
 
       </Box>

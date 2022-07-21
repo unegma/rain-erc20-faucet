@@ -20,7 +20,7 @@ import {Environment, Html, OrbitControls} from "@react-three/drei";
 import {Canvas} from "@react-three/fiber";
 import ReserveToken from "../3d/ReserveToken";
 import {InputAdornment} from "@mui/material";
-const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
+import Warning from "../various/Warning";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 ChartJS.register(
@@ -39,8 +39,6 @@ type adminPanelProps = {
   reserveInitialSupply: any, handleChangeReserveInitialSupply: any,
   resetToDefault: any, setAdminConfigPage: any,
   buttonLock: any, deployToken: any
-  // todo might be able to change how these are imported
-  address: string, setAddress: any
 }
 
 export default function DeployPanelView({
@@ -50,8 +48,6 @@ export default function DeployPanelView({
   reserveInitialSupply, handleChangeReserveInitialSupply,
   resetToDefault, setAdminConfigPage,
   buttonLock, deployToken,
-  // todo might be able to change how these are imported
-  address, setAddress
   } : adminPanelProps)
 {
 
@@ -93,7 +89,7 @@ export default function DeployPanelView({
 
   return (
     <>
-      <NavBar address={address} setAddress={setAddress} />
+      <NavBar />
 
       <Box
         className="admin-form"
@@ -112,15 +108,10 @@ export default function DeployPanelView({
         { adminConfigPage === 0 && (
           <>
             <Typography color="black" align="center">
-              Rain Protocol ERC20 Faucet Demo, tutorials: <a href="https://docs.rainprotocol.xyz">docs.rainprotocol.xyz</a>
-            </Typography>
-
-            <Typography color="black" align="center">
+              <a href="#" target="_blank">Rain Protocol ERC20 Faucet Demo Video</a><br/>
+              <a href="https://docs.rainprotocol.xyz">Tutorials at docs.rainprotocol.xyz</a><br/>
               {/*todo change to rUSD?*/}
-             <a href={`${BASE_URL}/0xCCe6fb1921497715163F4a038521d3145f308652`} target="_blank">Click for Example Faucet: Rain USD (rUSD)</a>
-            </Typography>
-            <Typography color="black" align="center">
-              <a href="#" target="_blank">See Faucet Deployment demo video</a>
+              <a href={`${BASE_URL}/0xCCe6fb1921497715163F4a038521d3145f308652`} target="_blank">Example Faucet: Rain USD (rUSD)</a>
             </Typography>
           </>
         )}
@@ -133,9 +124,7 @@ export default function DeployPanelView({
             <Environment preset="studio" />
           </Suspense>
           <OrbitControls autoRotate autoRotateSpeed={1} enableZoom={false} enablePan={false} enableRotate={false} />
-          {/*<OrbitControls enableZoom={true} enablePan={true} enableRotate={true} />*/}
         </Canvas>
-
 
         { adminConfigPage === 0 && (
           <>
@@ -151,7 +140,6 @@ export default function DeployPanelView({
                 onChange={handleChangeReserveName}
               />
             </FormControl>
-
 
             <FormControl variant="standard">
               <InputLabel className="input-box-label" htmlFor="component-helper">Reserve Token Symbol</InputLabel>
@@ -187,13 +175,7 @@ export default function DeployPanelView({
               (Page 2/2)
             </Typography>
 
-            <Typography color="red">
-              Please make sure you are connected to the <a href={`https://chainlist.org/?search=mumbai&testnets=true`} target="_blank"><b className='modalTextRed'>{CHAIN_NAME}</b></a> Network.
-            </Typography>
-
-            <Typography color="black">
-              Please be aware, this example does not (currently) have strict checking for all fields, and you will not recover the cost for network fees (gas) if a deployment fails.
-            </Typography>
+            <Warning />
 
             <div className="buttons-box">
               <Button className="fifty-percent-button" variant="outlined" onClick={() => {setAdminConfigPage(adminConfigPage-1)}}>Previous</Button>

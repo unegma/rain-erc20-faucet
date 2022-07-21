@@ -7,7 +7,7 @@ import Web3ConnectionButtons from './Web3ConnectionButtons';
 import {useWeb3React} from "@web3-react/core";
 import {Web3Provider} from "@ethersproject/providers";
 
-export default function NavBar({string, stringRight, address, setAddress}: {string?: string, stringRight?: string, address: string, setAddress: any}) {
+export default function NavBar({string}: {string?: string}) {
 
   const context = useWeb3React<Web3Provider>(); // todo check because this web3provider is from ethers
   const { connector, library, chainId, account, activate, deactivate, active, error } = context;
@@ -20,11 +20,7 @@ export default function NavBar({string, stringRight, address, setAddress}: {stri
             {!string ? 'Configure ERC20 Faucet' : string}
           </Typography>
 
-          <Web3ConnectionButtons setAddress={setAddress} className='connect-button' />
-
-          {/*<Typography className="right" variant="h6" component="div" sx={{ flexGrow: 1 }}>*/}
-          {/*  {!stringRight ? '' : stringRight}*/}
-          {/*</Typography>*/}
+          <Web3ConnectionButtons className='connect-button' />
         </Toolbar>
       </AppBar>
     </Box>

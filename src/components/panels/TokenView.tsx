@@ -5,23 +5,21 @@ import {
 import NavBar from "../layout/NavBar";
 import Modal from "./Modal";
 import {Canvas} from "@react-three/fiber";
-import {ContactShadows, Html, OrbitControls} from "@react-three/drei";
+import {ContactShadows, Html} from "@react-three/drei";
 import Fountain from "../3d/Fountain";
 import Sign from "../3d/Sign";
 const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
+const BASE_URL = process.env.REACT_APP_BASE_URL; // Mumbai (Polygon Testnet) Chain ID
 
 type tokenViewProps = {
-  reserveName: string, reserveSymbol: string, modalOpen: any, setModalOpen: any, reserveInitialSupply: any, buttonLock: any, tokenAddress: string,
-  consoleColor: any, consoleData: any, initiateClaim: any, setTokenAddress: any, faucetView: any,
-  // todo might be able to change how these are imported
-  BASE_URL: string, address: string, setAddress: any
+  reserveName: string, reserveSymbol: string, modalOpen: any, setModalOpen: any, reserveInitialSupply: any,
+  buttonLock: any, tokenAddress: string, consoleColor: any, consoleData: any, initiateClaim: any, setTokenAddress: any,
+  faucetView: any,
 }
 
 export default function TokenView({
     reserveName, reserveSymbol, modalOpen, setModalOpen, reserveInitialSupply, buttonLock, tokenAddress,
     consoleData, consoleColor, initiateClaim, setTokenAddress, faucetView,
-    // todo might be able to change how these are imported
-    BASE_URL, address, setAddress
   }: tokenViewProps )
 {
 
@@ -37,15 +35,14 @@ export default function TokenView({
     <>
       { faucetView && (
         <>
-          <NavBar string={`${reserveSymbol} Faucet (${reserveName})`} stringRight={``} address={address} setAddress={setAddress} />
-          <p className='deploy-own'>Make sure you are connected to the <a href={`https://chainlist.org/?search=mumbai&testnets=true`} target="_blank"><b className='modalTextRed'>{CHAIN_NAME}</b></a> Network. <a href={`${BASE_URL}`}>Click Here to Deploy Your Own Reserve Token!</a></p>
+          <NavBar string={`${reserveSymbol} Faucet (${reserveName})`} />
+          <p className='deploy-own'>Must be connected to <a href={`https://chainlist.org/?search=mumbai&testnets=true`} target="_blank"><b className='modalTextRed'>{CHAIN_NAME}</b></a> Testnet. <a href={`${BASE_URL}`}>Deploy Your Own Reserve Token Here!</a></p>
 
           <div className="canvasContainer">
             <Modal
               modalOpen={modalOpen}
               setModalOpen={setModalOpen}
               reserveSymbol={reserveSymbol}
-              reserveInitialSupply={reserveInitialSupply}
               buttonLock={buttonLock}
               consoleData={consoleData}
               consoleColor={consoleColor}
@@ -63,8 +60,6 @@ export default function TokenView({
                 <Sign position={[9,-10,-4]} rotation={[2.8,1.5,-1.1]} scale={0.08} reserveSymbol={reserveSymbol} />
                 <ContactShadows frames={1} rotation-x={[Math.PI / 2]} position={[0, -0.33, 0]} far={0.4} width={2} height={2} blur={4} />
               </Suspense>
-              {/*<OrbitControls autoRotate autoRotateSpeed={1} enableZoom={false} enablePan={false} />*/}
-              {/*<OrbitControls autoRotateSpeed={1} enableZoom={true} enablePan={true} />*/}
 
             </Canvas>
 
