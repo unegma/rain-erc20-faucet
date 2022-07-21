@@ -3,7 +3,7 @@ import {
   useParams
 } from "react-router-dom";
 import NavBar from "../layout/NavBar";
-import TokenClaimModal from "./Modal";
+import TokenClaimModal from "./TokenClaimModal";
 import {Canvas} from "@react-three/fiber";
 import {ContactShadows, Html} from "@react-three/drei";
 import Fountain from "../3d/Fountain";
