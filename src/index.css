@@ -226,3 +226,7 @@ body {
 .web3connectButton:hover {
   opacity: 0.8 !important;
 }
+
+.copy-button {
+  text-decoration: underline;
+}

@@ -82,12 +82,12 @@ export default function TokenClaimModal({
         <Typography className="modalText">
           To see these tokens in your Wallet,&nbsp;
           {/*!! note: this won't work on localhost, needs https !!*/}
-          <a href="#" onClick={(event: any) =>
-            {event.preventDefault(); window.navigator.clipboard.writeText(tokenAddress);
+          <span className='copy-button' onClick={() =>
+            {navigator.clipboard.writeText(tokenAddress);
               alert(`${tokenAddress} copied to clipboard!`)}}
           >
             add the address for <b>{reserveSymbol}</b>
-          </a>.
+          </span>.
         </Typography><br/>
 
         <Typography className="modalText">
