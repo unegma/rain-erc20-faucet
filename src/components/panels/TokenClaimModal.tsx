@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { Modal as ModalMaterial } from '@mui/material';
 import {Bar} from "react-chartjs-2";
 import Warning from "../various/Warning";
+import Console from '../various/Console';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -81,7 +82,6 @@ export default function TokenClaimModal({
 
         <Typography className="modalText">
           To see these tokens in your Wallet,&nbsp;
-          {/*!! note: this won't work on localhost, needs https !!*/}
           <a href="#" onClick={(event: any) =>
             {event.preventDefault();alert(`Copy: ${tokenAddress} to clipboard and import token in to your Wallet.`)}}
           >
@@ -94,16 +94,7 @@ export default function TokenClaimModal({
         </Typography><br/>
 
         <Warning /><br/>
-
-        { consoleColor === 'red' && (
-          <Typography className="modalTextRed">{consoleData}</Typography>
-        )}
-
-        { consoleColor === 'green' && (
-          <Typography className="modalTextGreen">{consoleData}</Typography>
-        )}
-
-        <br/>
+        <Console consoleData={consoleData} consoleColor={consoleColor} /><br/>
 
         <div className="buttons-box">
           <Button disabled={buttonLock} className="fifty-percent-button" variant="outlined" onClick={() => {setModalOpen(false)}}>Close</Button>
