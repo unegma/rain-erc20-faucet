@@ -23,7 +23,7 @@ type modalProps = {
   initiateClaim: any, consoleData: string, consoleColor: string
 }
 
-export default function Modal({
+export default function TokenClaimModal({
     modalOpen, setModalOpen, reserveSymbol, buttonLock, tokenAddress, initiateClaim, consoleData, consoleColor
   } : modalProps )
 {
@@ -94,7 +94,7 @@ export default function Modal({
           These <b>{reserveSymbol}</b> can be used <a href={`https://rain-sale.unegma.work?t=${tokenAddress}`} target="_blank">as the <b>Reserve Token</b> in a Rain Sale (link passes address)</a>.
         </Typography><br/>
 
-        <Warning />
+        <Warning /><br/>
 
         { consoleColor === 'red' && (
           <Typography className="modalTextRed">{consoleData}</Typography>

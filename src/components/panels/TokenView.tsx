@@ -3,7 +3,7 @@ import {
   useParams
 } from "react-router-dom";
 import NavBar from "../layout/NavBar";
-import Modal from "./Modal";
+import TokenClaimModal from "./Modal";
 import {Canvas} from "@react-three/fiber";
 import {ContactShadows, Html} from "@react-three/drei";
 import Fountain from "../3d/Fountain";
@@ -39,7 +39,7 @@ export default function TokenView({
           <p className='deploy-own'>Must be connected to <a href={`https://chainlist.org/?search=mumbai&testnets=true`} target="_blank"><b className='modalTextRed'>{CHAIN_NAME}</b></a> Testnet. <a href={`${BASE_URL}`}>Deploy Your Own Reserve Token Here!</a></p>
 
           <div className="canvasContainer">
-            <Modal
+            <TokenClaimModal
               modalOpen={modalOpen}
               setModalOpen={setModalOpen}
               reserveSymbol={reserveSymbol}
