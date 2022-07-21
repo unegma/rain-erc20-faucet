@@ -83,7 +83,7 @@ export default function TokenClaimModal({
           To see these tokens in your Wallet,&nbsp;
           {/*!! note: this won't work on localhost, needs https !!*/}
           <a href="#" onClick={(event: any) =>
-            {event.preventDefault(); navigator.clipboard.writeText(tokenAddress);
+            {event.preventDefault(); window.navigator.clipboard.writeText(tokenAddress);
               alert(`${tokenAddress} copied to clipboard!`)}}
           >
             add the address for <b>{reserveSymbol}</b>
