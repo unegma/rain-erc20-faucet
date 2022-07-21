@@ -8,37 +8,36 @@ export async function deployToken(
   setButtonLock: any, setLoading: any, reserveName: string, reserveSymbol: string, account: string,
   reserveDecimals: string, reserveInitialSupply: string, signer: any
 ) {
-
-  if (account === "" || typeof account === 'undefined') {
-    alert("Are you connected with your Web3 Wallet? (Click the button at the top right)!");
-    return;
-  }
-
-  setButtonLock(true);
-  setLoading(true);
-
-  const emissionsERC20Config = {
-    allowDelegatedClaims: false, // can mint on behalf of someone else
-    erc20Config: {
-      name: reserveName,
-      symbol: reserveSymbol,
-      distributor: account, // initialSupply is given to the distributor during the deployment of the emissions contract
-      initialSupply: ethers.utils.parseUnits("0", reserveDecimals), // todo change this to 0 if possible, or tell the deployer that they will get an amoujnt of tokens
-    },
-    vmStateConfig: {
-      // todo should really change 'initialSupply' to now be 'faucetSupply' or something
-      constants: [ethers.utils.parseUnits(reserveInitialSupply, reserveDecimals)], // mint a set amount at a time (infinitely), if set to 10, will mint 10 at a time, no more no less (infinitely)
-      sources: [
-        ethers.utils.concat([
-          rainSDK.utils.op(rainSDK.Sale.Opcodes.VAL, 0),
-        ]),
-      ],
-      stackLength: 1,
-      argumentsLength: 0,
-    },
-  };
-
   try {
+    if (account === "" || typeof account === 'undefined') {
+      alert("Are you connected with your Web3 Wallet? (Click the button at the top right)!");
+      return;
+    }
+
+    setButtonLock(true);
+    setLoading(true);
+
+    const emissionsERC20Config = {
+      allowDelegatedClaims: false, // can mint on behalf of someone else
+      erc20Config: {
+        name: reserveName,
+        symbol: reserveSymbol,
+        distributor: account, // initialSupply is given to the distributor during the deployment of the emissions contract
+        initialSupply: ethers.utils.parseUnits("0", reserveDecimals), // todo change this to 0 if possible, or tell the deployer that they will get an amoujnt of tokens
+      },
+      vmStateConfig: {
+        // todo should really change 'initialSupply' to now be 'faucetSupply' or something
+        constants: [ethers.utils.parseUnits(reserveInitialSupply, reserveDecimals)], // mint a set amount at a time (infinitely), if set to 10, will mint 10 at a time, no more no less (infinitely)
+        sources: [
+          ethers.utils.concat([
+            rainSDK.utils.op(rainSDK.Sale.Opcodes.VAL, 0),
+          ]),
+        ],
+        stackLength: 1,
+        argumentsLength: 0,
+      },
+    };
+
     console.log(`Deploying and Minting ERC20 Token with the following parameters:`, emissionsERC20Config);
     // @ts-ignore
     const emissionsErc20 = await rainSDK.EmissionsERC20.deploy(signer, emissionsERC20Config);
@@ -67,10 +66,15 @@ export async function deployToken(
 export async function initiateClaim(
   setButtonLock: any, setLoading: any, account: string, setConsoleData: any, setConsoleColor: any, signer: any
 ) {
-  setButtonLock(true);
-  setLoading(true);
-  //
   try {
+    if (account === "" || typeof account === 'undefined') {
+      alert("Are you connected with your Web3 Wallet? (Click the button at the top right)!");
+      return;
+    }
+
+    setButtonLock(true);
+    setLoading(true);
+
     // @ts-ignore
     const emissionsErc20 = new rainSDK.EmissionsERC20(tokenAddress, signer);
 
