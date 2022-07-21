@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 import {Signer} from "ethers";
 import {CircularProgress} from "@mui/material";
-import AdminPanelView from "./components/panels/DeployPanelView";
+import DeployPanelView from "./components/panels/DeployPanelView";
 import TokenView from "./components/panels/TokenView";
 import TokenDashboardView from "./components/panels/TokenDashboardView";
 import {useWeb3React} from "@web3-react/core";
@@ -92,7 +92,7 @@ function App() {
           key={'home'}
           path="/"
           element={
-            <AdminPanelView
+            <DeployPanelView
               adminConfigPage={adminConfigPage} reserveName={reserveName}
               handleChangeReserveName={handleChangeReserveName} reserveSymbol={reserveSymbol}
               handleChangeReserveSymbol={handleChangeReserveSymbol}
