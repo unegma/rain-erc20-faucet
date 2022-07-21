@@ -7,8 +7,8 @@ const WARNING_MESSAGE="Are you connected with your Web3 Wallet? (Click the butto
  * Deploy a Sale and Start it (2txs)
  */
 export async function deployToken(
-  setButtonLock: any, setLoading: any, reserveName: string, reserveSymbol: string, account: string,
-  reserveDecimals: string, reserveInitialSupply: string, signer: any
+  signer: any,  setButtonLock: any, setLoading: any, reserveName: string, reserveSymbol: string, account: string,
+  reserveDecimals: string, reserveInitialSupply: string
 ) {
   try {
     if (account === "" || typeof account === 'undefined') {
@@ -66,7 +66,7 @@ export async function deployToken(
  * THIS MUST NOT BE SHOWN BEFORE getSaleData() HAS FINISHED OR THE DATA WILL BE FROM .ENV
  */
 export async function initiateClaim(
-  setButtonLock: any, setLoading: any, account: string, setConsoleData: any, setConsoleColor: any, signer: any
+  signer: any, setButtonLock: any, setLoading: any, account: string, setConsoleData: any, setConsoleColor: any, tokenAddress: string
 ) {
   try {
     if (account === "" || typeof account === 'undefined') {

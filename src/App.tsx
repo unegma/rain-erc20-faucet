@@ -100,7 +100,7 @@ function App() {
               handleChangeReserveInitialSupply={handleChangeReserveInitialSupply} resetToDefault={resetToDefault}
               setAdminConfigPage={setAdminConfigPage} buttonLock={buttonLock}
               deployToken={() => deployToken(
-                setButtonLock,setLoading,reserveName,reserveSymbol,account,reserveDecimals,reserveInitialSupply, signer
+                signer, setButtonLock,setLoading,reserveName,reserveSymbol,account,reserveDecimals,reserveInitialSupply
               )}
             />
           }
@@ -117,7 +117,7 @@ function App() {
               setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
               setTokenAddress={setTokenAddress} faucetView={faucetView}
               initiateClaim={() => initiateClaim(
-                setButtonLock,setLoading,account,setConsoleData,setConsoleColor, signer
+                signer, setButtonLock,setLoading,account,setConsoleData,setConsoleColor, tokenAddress
               )}
             />
           }
