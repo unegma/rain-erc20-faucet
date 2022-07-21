@@ -8,7 +8,7 @@ import React, {useEffect, useRef} from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
-const FAUCET_URL = 'https://assets.unegma.net/unegma.work/rain-erc20-faucet.unegma.work/fountain.gltf';
+const FAUCET_URL = `${process.env.REACT_APP_CDN_BASE_URL}/fountain.gltf`;
 
 type GLTFResult = GLTF & {
   nodes: {

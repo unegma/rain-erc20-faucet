@@ -7,7 +7,7 @@ import React, { useRef } from 'react'
 import {Text, useGLTF} from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
-const VOUCHER_URL = 'https://assets.unegma.net/unegma.work/rain-erc20-faucet.unegma.work/voucher.gltf';
+const VOUCHER_URL = `${process.env.REACT_APP_CDN_BASE_URL}/voucher.gltf`;
 
 type GLTFResult = GLTF & {
   nodes: {

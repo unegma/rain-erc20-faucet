@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 import { useGLTF, Text } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
-const SIGN_URL = 'https://assets.unegma.net/unegma.work/rain-erc20-faucet.unegma.work/sign-transformed.glb';
+const SIGN_URL = `${process.env.REACT_APP_CDN_BASE_URL}/sign-transformed.glb`;
 
 type GLTFResult = GLTF & {
   nodes: {

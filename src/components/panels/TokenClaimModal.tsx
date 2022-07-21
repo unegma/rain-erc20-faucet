@@ -6,6 +6,7 @@ import { Modal as ModalMaterial } from '@mui/material';
 import {Bar} from "react-chartjs-2";
 import Warning from "../various/Warning";
 import Console from '../various/Console';
+const SALE_BASE_URL = process.env.REACT_APP_SALE_BASE_URL;
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -90,7 +91,7 @@ export default function TokenClaimModal({
         </Typography><br/>
 
         <Typography className="modalText">
-          These <b>{reserveSymbol}</b> can be used <a href={`https://rain-sale.unegma.work?t=${tokenAddress}`} target="_blank">as the <b>Reserve Token</b> in a Rain Sale (link passes address)</a>.
+          These <b>{reserveSymbol}</b> can be used <a href={`${SALE_BASE_URL}?t=${tokenAddress}`} target="_blank">as the <b>Reserve Token</b> in a Rain Sale (link passes address)</a>.
         </Typography><br/>
 
         <Warning /><br/>
