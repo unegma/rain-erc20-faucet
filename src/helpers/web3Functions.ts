@@ -1,6 +1,8 @@
 import {ethers} from "ethers";
 import * as rainSDK from "rain-sdk";
 
+const WARNING_MESSAGE="Are you connected with your Web3 Wallet? (Click the button at the top right)!";
+
 /**
  * Deploy a Sale and Start it (2txs)
  */
@@ -10,7 +12,7 @@ export async function deployToken(
 ) {
   try {
     if (account === "" || typeof account === 'undefined') {
-      alert("Are you connected with your Web3 Wallet? (Click the button at the top right)!");
+      alert(WARNING_MESSAGE);
       return;
     }
 
@@ -68,7 +70,7 @@ export async function initiateClaim(
 ) {
   try {
     if (account === "" || typeof account === 'undefined') {
-      alert("Are you connected with your Web3 Wallet? (Click the button at the top right)!");
+      alert(WARNING_MESSAGE);
       return;
     }
 
