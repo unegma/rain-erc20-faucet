@@ -11,6 +11,7 @@ import Sign from "../3d/Sign";
 import {Typography} from "@mui/material";
 const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
 const BASE_URL = process.env.REACT_APP_BASE_URL; // Mumbai (Polygon Testnet) Chain ID
+const GITHUB_LINK = process.env.REACT_APP_GITHUB_URL;
 
 type tokenViewProps = {
   reserveName: string, reserveSymbol: string, modalOpen: any, setModalOpen: any, reserveInitialSupply: any,
@@ -38,6 +39,7 @@ export default function TokenView({
         <>
           <NavBar string={`${reserveSymbol} Faucet (${reserveName})`} />
           <p className='deploy-own'>Must be connected to <a href={`https://chainlist.org/?search=mumbai&testnets=true`} target="_blank"><b className='modalTextRed'>{CHAIN_NAME}</b></a> Testnet. <a href={`${window.location.origin}`}>Deploy Your Own Reserve Token Here!</a></p>
+          <p className='github'><a href={`${GITHUB_LINK}`} target="_blank">(Github Link)</a></p>
 
           <div className="canvasContainer">
             <TokenClaimModal

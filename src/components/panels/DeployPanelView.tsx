@@ -14,6 +14,7 @@ import Warning from "../various/Warning";
 import {TransactionsChartDeploy} from "../various/TransactionsChartDeploy";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const RESERVE_EXAMPLE = process.env.REACT_APP_SALE_EXAMPLE;
+const GITHUB_LINK = process.env.REACT_APP_GITHUB_URL;
 
 type adminPanelProps = {
   adminConfigPage: number
@@ -37,6 +38,7 @@ export default function DeployPanelView({
   return (
     <>
       <NavBar />
+      <p className='github'><a href={`${GITHUB_LINK}`} target="_blank">(Github Link)</a></p>
 
       <Box
         className="admin-form"
