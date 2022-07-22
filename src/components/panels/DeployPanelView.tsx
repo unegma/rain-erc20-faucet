@@ -57,7 +57,7 @@ export default function DeployPanelView({
               <a href="#" target="_blank">Rain Protocol ERC20 Faucet Demo Video</a><br/>
               <a href="https://docs.rainprotocol.xyz">Tutorials at docs.rainprotocol.xyz</a><br/>
               {/*todo change to rUSD?*/}
-              <a href={`${window.location.origin}/0xCCe6fb1921497715163F4a038521d3145f308652`} target="_blank">Example Faucet: Rain USD (rUSD)</a>
+              <a href={`${window.location.origin}/0x72b5D32d53B4cbf3715af4ad4A0625D4A02Ac0b8`} target="_blank">Example Faucet: Rain USD (rUSD)</a>
             </Typography>
           </>
         )}
