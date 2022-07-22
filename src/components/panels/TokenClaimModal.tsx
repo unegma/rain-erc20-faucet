@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Modal as ModalMaterial } from '@mui/material';
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import {Bar} from "react-chartjs-2";
 import Warning from "../various/Warning";
 import Console from '../various/Console';
@@ -76,6 +77,7 @@ export default function TokenClaimModal({
       onClose={handleClose}
     >
       <Box component="div" sx={style}>
+        <HighlightOffIcon className="closeModalButton" onClick={() => { setModalOpen(false)}}/>
         <br/>
         <Bar options={options} data={data} />
         <br/>
