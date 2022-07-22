@@ -8,6 +8,7 @@ import {Canvas} from "@react-three/fiber";
 import {ContactShadows, Html} from "@react-three/drei";
 import Fountain from "../3d/Fountain";
 import Sign from "../3d/Sign";
+import {Typography} from "@mui/material";
 const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
 const BASE_URL = process.env.REACT_APP_BASE_URL; // Mumbai (Polygon Testnet) Chain ID
 
@@ -64,6 +65,11 @@ export default function TokenView({
             </Canvas>
 
           </div>
+        </>
+      )}
+      {!faucetView && (
+        <>
+          <Typography className="black">Loading..<br/>If this message persists,<br/>Facuet may need to finish indexing<br/>(try again in a few moments)</Typography>
         </>
       )}
     </>
