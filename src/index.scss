@@ -1,3 +1,7 @@
+/*todo move to styled components*/
+
+/******* Main *******/
+
 html, body {
 }
 
@@ -15,25 +19,7 @@ code {
     monospace;
 }
 
-/*#root, .rootContainer, .canvasContainer {*/
 #root {
-  /*display:flex;*/
-  /*flex-direction: column;*/
-
-  /*min-height: 100vh;*/
-  /*width: 100vw;*/
-  /*!*height: 100%;*!*/
-  /*!*height: 100vh;*!*/
-  /*margin: 0;*/
-  /*padding: 0;*/
-  /*overflow: hidden;*/
-  /*!*margin-top: 120px !important;*!*/
-
-  /*display: flex;*/
-  /*flex-direction: column;*/
-  /*align-items: center;*/
-  /*justify-items: center;*/
-
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -55,43 +41,82 @@ body {
   user-select: none;
 }
 
-.canvasContainer {
-
+.right {
+  text-align: right;
 }
 
-.modalImage {
-  width: 100%;
-  height: auto;
+.black {
+  color: black;
 }
 
-.faucetImage {
-  width: 50vw;
-  height: auto;
+.red {
+  color: red;
+}
+
+.the-canvas {
+  width: 100vw !important;
+  height: 60vh !important; /* above 70 seems to break something */
+}
+
+.the-canvas:hover {
   cursor: pointer;
 }
+
+/******* 3D *******/
+
+
+/******* Layout *******/
 
 .navBar {
   z-index: 2;
   color: black;
 }
 
-.right {
-  text-align: right;
+.deploy-own {
+  display: block;
+  position: absolute;
+
+  background-color: black;
+  font-size: 16px;
+  padding: 10px;
+  bottom: 5px;
+  right: 5px;
+
+  a {
+    color: white;
+    /*text-decoration: none;*/
+  }
 }
 
-.modalText {
-  color: black;
-  user-select: text;
+.connectButtonContainer {
+  display: flex;
+  flex-direction: row;
 }
 
-.modalTextRed {
-  color: red;
-  user-select: text;
+.connectTypeButton {
+  margin-right: 5px !important;
 }
 
-.modalTextGreen {
-  color: green;
-  user-select: text;
+.minitext {
+  font-size: 10px;
+}
+
+.web3connectButton {
+  background-color: green !important;
+  color: white !important;
+  border: none !important;
+
+  &:hover {
+    opacity: 0.8 !important;
+  }
+}
+
+/******* Panels *******/
+
+.faucetImage {
+  width: 50vw;
+  height: auto;
+  cursor: pointer;
 }
 
 .admin-form {
@@ -119,12 +144,6 @@ body {
   color: black !important;
 }
 
-.costs-pie {
-  width:20vw !important;
-  height:20vw !important;
-  align-self: center;
-}
-
 .deploying {
   position: fixed;
   width:100%;
@@ -142,23 +161,10 @@ body {
   z-index: 1500;
 }
 
-.the-canvas {
-  width: 100vw !important;
-  height: 60vh !important; /* above 70 seems to break something */
-}
-
-.the-canvas:hover {
-  cursor: pointer;
-}
-
 .mainImage {
   max-width: 30vw;
   height: auto;
   align-self: center;
-}
-
-.black {
-  color: black;
 }
 
 .the-canvas-deploypanel {
@@ -166,71 +172,37 @@ body {
   height: 200px !important;
 }
 
-.deploy-own {
-  display: block;
-  position: absolute;
-
-  background-color: black;
-  font-size: 16px;
-  padding: 10px;
-  bottom: 5px;
-  right: 5px;
-}
-
-.deploy-own a {
-  color: white;
-  /*text-decoration: none;*/
-}
-
-.red {
-  color: red;
-}
-
-.connect-button {
-}
-
-/* modal for connect */
-
 .closeModalButton {
   cursor: pointer;
   position: absolute !important;
   right: 5px !important;
   top:5px !important;
   color: black;
-  cursor: pointer;
 }
 
 .modalTitle {
   color: black;
 }
 
-.connectButtonContainer {
-  display: flex;
-  flex-direction: row;
-}
-
-.connectTypeButton {
-  margin-right: 5px !important;
-}
-
-.minitext {
-  font-size: 10px;
-}
-
-.web3connectButton {
-  background-color: green !important;
-  color: white !important;
-  border: none !important;
-}
-
-.web3connectButton:hover {
-  opacity: 0.8 !important;
-}
-
-.closeModalButton {
-  cursor: pointer;
-  position: absolute !important;
-  right: 5px !important;
-  top:5px !important;
+.modalText {
   color: black;
+  user-select: text;
 }
+
+.modalTextRed {
+  color: red;
+  user-select: text;
+}
+
+.modalTextGreen {
+  color: green;
+  user-select: text;
+}
+
+.modalImage {
+  width: 100%;
+  height: auto;
+}
+
+/******* Various *******/
+
