@@ -5,17 +5,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
 import Button from "@mui/material/Button";
-import {Bar} from "react-chartjs-2";
 import React, { Suspense } from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
 import {Environment, Html, OrbitControls} from "@react-three/drei";
 import {Canvas} from "@react-three/fiber";
 import ReserveToken from "../3d/ReserveToken";
@@ -23,15 +13,6 @@ import {InputAdornment} from "@mui/material";
 import Warning from "../various/Warning";
 import {TransactionsChartDeploy} from "../various/TransactionsChartDeploy";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
 
 type adminPanelProps = {
   adminConfigPage: number
