@@ -21,6 +21,7 @@ import {Canvas} from "@react-three/fiber";
 import ReserveToken from "../3d/ReserveToken";
 import {InputAdornment} from "@mui/material";
 import Warning from "../various/Warning";
+import {TransactionsChartDeploy} from "../various/TransactionsChartDeploy";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 ChartJS.register(
@@ -50,42 +51,6 @@ export default function DeployPanelView({
   buttonLock, deployToken,
   } : adminPanelProps)
 {
-
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-        position: 'top' as const,
-      },
-      title: {
-        display: true,
-        text: 'Upcoming Transaction Cost Ratios (Estimated MATIC Ratios based on costs at: 2022-05-30T15:32:44Z)',
-      },
-    },
-  };
-
-  const data = {
-    labels: ['Tx1: Deploy Token'],
-    datasets: [
-      {
-        label: '',
-        data: [1],
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-      },
-      {
-        label: '',
-        data: [0.01268265], // todo base it on dynamic matic costs
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
-        label: '',
-        data: [1],
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-      }
-    ],
-  };
 
   return (
     <>
@@ -169,7 +134,7 @@ export default function DeployPanelView({
 
         { adminConfigPage === 1 && (
           <>
-            <Bar options={options} data={data} />;
+            <TransactionsChartDeploy />
 
             <Typography variant="h5" component="h3" color="black">
               (Page 2/2)

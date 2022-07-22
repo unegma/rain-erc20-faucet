@@ -7,6 +7,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import {Bar} from "react-chartjs-2";
 import Warning from "../various/Warning";
 import Console from '../various/Console';
+import {TransactionsChartClaim} from "../various/TransactionsChartClaim";
 const SALE_BASE_URL = process.env.REACT_APP_SALE_BASE_URL;
 
 const style = {
@@ -14,7 +15,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '42vw',
+  width: '38vw',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -31,42 +32,6 @@ export default function TokenClaimModal({
   } : modalProps )
 {
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-        position: 'top' as const,
-      },
-      title: {
-        display: true,
-        text: 'Upcoming Transaction Cost Ratios (Estimated MATIC Ratios based on costs at: 2022-05-30T15:32:44Z)',
-      },
-    },
-  };
-
-
-  const data = {
-    labels: [`Tx1: Claim ${reserveSymbol}`],
-    datasets: [
-      {
-        label: '',
-        data: [1],
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-      },
-      {
-        label: '',
-        data: [0.00927434], // todo base it on dynamic matic costs
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
-        label: '',
-        data: [1],
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-      }
-    ],
-  };
-
   function handleClose() {
     setModalOpen(false)
   }
@@ -79,9 +44,8 @@ export default function TokenClaimModal({
       <Box component="div" sx={style}>
         <HighlightOffIcon className="closeModalButton" onClick={() => { setModalOpen(false)}}/>
         <br/>
-        <Bar options={options} data={data} />
+        <TransactionsChartClaim reserveSymbol={reserveSymbol} />
         <br/>
-
 
         <Typography className="modalText">
           To see these tokens in your Wallet,&nbsp;
