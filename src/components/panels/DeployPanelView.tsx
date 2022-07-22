@@ -13,6 +13,7 @@ import {InputAdornment} from "@mui/material";
 import Warning from "../various/Warning";
 import {TransactionsChartDeploy} from "../various/TransactionsChartDeploy";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
+const RESERVE_EXAMPLE = process.env.REACT_APP_SALE_EXAMPLE;
 
 type adminPanelProps = {
   adminConfigPage: number
@@ -57,7 +58,7 @@ export default function DeployPanelView({
               <a href="#" target="_blank">Rain Protocol ERC20 Faucet Demo Video</a><br/>
               <a href="https://docs.rainprotocol.xyz">Tutorials at docs.rainprotocol.xyz</a><br/>
               {/*todo change to rUSD?*/}
-              <a href={`${window.location.origin}/0x72b5D32d53B4cbf3715af4ad4A0625D4A02Ac0b8`} target="_blank">Example Faucet: Rain USD (rUSD)</a>
+              <a href={`${window.location.origin}/${RESERVE_EXAMPLE}`} target="_blank">Example Faucet: Rain USD (rUSD)</a>
             </Typography>
           </>
         )}
