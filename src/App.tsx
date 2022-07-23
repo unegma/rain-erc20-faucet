@@ -10,7 +10,7 @@ import TokenDashboardView from "./components/panels/TokenDashboardView";
 import {useWeb3React} from "@web3-react/core";
 import {Web3Provider} from "@ethersproject/providers";
 import {getTokenData} from './helpers/subgraphCalls';
-import {deployToken, initiateClaim} from './helpers/web3Functions';
+import {deployToken, getReserveBalance, initiateClaim} from './helpers/web3Functions';
 
 /**
  * App
@@ -41,6 +41,8 @@ function App() {
   const [reserveName, setReserveName] = React.useState(process.env.REACT_APP_RESERVE_NAME as string);
   const [reserveSymbol, setReserveSymbol] = React.useState(process.env.REACT_APP_RESERVE_SYMBOL as string);
 
+  const [reserveBalance, setReserveBalance] = React.useState("");
+
   // these must be the same as the above in .env
   function resetToDefault() {
     setReserveDecimals(process.env.REACT_APP_RESERVE_ERC20_DECIMALS as string);
@@ -65,6 +67,13 @@ function App() {
       getTokenData(tokenAddress, setReserveName, setReserveSymbol, setReserveDecimals, setFaucetView);
     }
   }, [tokenAddress]); // only get sale data when signer and saleAddress have been loaded // monitor saleComplete so that the amount displayed on the button is updated when the sale is finished
+
+  // user balance of reserveToken
+  useEffect(() => {
+    if (signer && faucetView) {
+      getReserveBalance(signer,account,tokenAddress,setReserveBalance);
+    }
+  }, [signer, account, tokenAddress])
 
   /** Handle Form Inputs **/
 
@@ -115,7 +124,7 @@ function App() {
               reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
               reserveInitialSupply={reserveInitialSupply}
               setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
-              setTokenAddress={setTokenAddress} faucetView={faucetView}
+              setTokenAddress={setTokenAddress} faucetView={faucetView} reserveBalance={reserveBalance}
               initiateClaim={() => initiateClaim(
                 signer, setButtonLock,setLoading,account,setConsoleData,setConsoleColor, tokenAddress
               )}

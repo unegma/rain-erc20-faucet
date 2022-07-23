@@ -16,12 +16,12 @@ const GITHUB_LINK = process.env.REACT_APP_GITHUB_URL;
 type tokenViewProps = {
   reserveName: string, reserveSymbol: string, modalOpen: any, setModalOpen: any, reserveInitialSupply: any,
   buttonLock: any, tokenAddress: string, consoleColor: any, consoleData: any, initiateClaim: any, setTokenAddress: any,
-  faucetView: any,
+  faucetView: any, reserveBalance: string
 }
 
 export default function TokenView({
     reserveName, reserveSymbol, modalOpen, setModalOpen, reserveInitialSupply, buttonLock, tokenAddress,
-    consoleData, consoleColor, initiateClaim, setTokenAddress, faucetView,
+    consoleData, consoleColor, initiateClaim, setTokenAddress, faucetView, reserveBalance
   }: tokenViewProps )
 {
 
@@ -51,6 +51,7 @@ export default function TokenView({
               consoleColor={consoleColor}
               initiateClaim={initiateClaim}
               tokenAddress={tokenAddress}
+              reserveBalance={reserveBalance}
             />
 
             <Canvas className="the-canvas" onClick={() => {setModalOpen(!modalOpen)}} shadows dpr={[1,2 ]} camera={{ position: [0,-30,0], fov: 50 }}>
@@ -71,7 +72,7 @@ export default function TokenView({
       )}
       {!faucetView && (
         <>
-          <Typography className="black">Loading..<br/>If this message persists,<br/>Facuet may need to finish indexing<br/>(try again in a few moments)</Typography>
+          <Typography className="black">Loading..<br/>If this message persists,<br/>Facuet may need to finish indexing,<br/>or the address doesn't exist.<br/>(Try again in a few moments).</Typography>
         </>
       )}
     </>

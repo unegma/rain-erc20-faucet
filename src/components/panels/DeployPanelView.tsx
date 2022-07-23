@@ -13,7 +13,7 @@ import {InputAdornment} from "@mui/material";
 import Warning from "../various/Warning";
 import {TransactionsChartDeploy} from "../various/TransactionsChartDeploy";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
-const RESERVE_EXAMPLE = process.env.REACT_APP_SALE_EXAMPLE;
+const RESERVE_EXAMPLE = process.env.REACT_APP_RESERVE_EXAMPLE;
 const GITHUB_LINK = process.env.REACT_APP_GITHUB_URL;
 
 type adminPanelProps = {

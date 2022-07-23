@@ -23,11 +23,11 @@ const style = {
 
 type modalProps = {
   modalOpen: boolean, setModalOpen: any, reserveSymbol: string, buttonLock: any, tokenAddress: string,
-  initiateClaim: any, consoleData: string, consoleColor: string
+  initiateClaim: any, consoleData: string, consoleColor: string, reserveBalance: string
 }
 
 export default function TokenClaimModal({
-    modalOpen, setModalOpen, reserveSymbol, buttonLock, tokenAddress, initiateClaim, consoleData, consoleColor
+    modalOpen, setModalOpen, reserveSymbol, buttonLock, tokenAddress, initiateClaim, consoleData, consoleColor, reserveBalance
   } : modalProps )
 {
 
@@ -47,6 +47,7 @@ export default function TokenClaimModal({
         <br/>
 
         <Typography className="modalText">
+          <span className='yourBalance'>Your Balance: {reserveBalance}{reserveSymbol}</span>.
           To see these tokens in your Wallet,&nbsp;
           <a href="#" onClick={(event: any) =>
             {event.preventDefault();alert(`Copy: ${tokenAddress} to clipboard and import token in to your Wallet.`)}}
