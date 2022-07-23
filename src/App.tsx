@@ -82,13 +82,14 @@ function App() {
   }
   const handleChangeReserveSymbol = (event: React.ChangeEvent<HTMLInputElement>) => {
     let newReserveSymbol = event.target.value;
+    if (parseInt(newReserveSymbol) <= 0) { alert("Must be > 0."); return;}
     if (newReserveSymbol.length > 11) { alert("Symbol must be 11 characters or less."); return;}
     setReserveSymbol(newReserveSymbol);
   }
   const handleChangeReserveClaimable = (event: React.ChangeEvent<HTMLInputElement>) => {
     let newClaimable = event.target.value;
-    if (parseInt(newClaimable) > 1000) { alert("Can't have more than 1000 in this example."); return;}
     if (parseInt(newClaimable) <= 0) { alert("Must be > 0."); return;}
+    if (parseInt(newClaimable) > 1000) { alert("Can't have more than 1000 in this example."); return;}
     // if (newClaimable == "") { alert("Must be > 0."); return;}
     setReserveClaimable(newClaimable);
   }
