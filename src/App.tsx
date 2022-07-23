@@ -82,7 +82,7 @@ function App() {
   }
   const handleChangeReserveSymbol = (event: React.ChangeEvent<HTMLInputElement>) => {
     let newReserveSymbol = event.target.value;
-    if (parseInt(newReserveSymbol) <= 0) { alert("Must be > 0."); return;}
+    // if (newReserveSymbol.length <= 0) { alert("Must be > 0."); return;}
     if (newReserveSymbol.length > 11) { alert("Symbol must be 11 characters or less."); return;}
     setReserveSymbol(newReserveSymbol);
   }
