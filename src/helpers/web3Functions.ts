@@ -8,7 +8,7 @@ const WARNING_MESSAGE="Are you connected with your Web3 Wallet? (Click the butto
  */
 export async function deployToken(
   signer: any,  setButtonLock: any, setLoading: any, reserveName: string, reserveSymbol: string, account: string,
-  reserveDecimals: string, reserveInitialSupply: string
+  reserveDecimals: string, reserveClaimable: string
 ) {
   try {
     if (account === "" || typeof account === 'undefined') {
@@ -29,7 +29,7 @@ export async function deployToken(
       },
       vmStateConfig: {
         // todo should really change 'initialSupply' to now be 'faucetSupply' or something
-        constants: [ethers.utils.parseUnits(reserveInitialSupply, reserveDecimals)], // mint a set amount at a time (infinitely), if set to 10, will mint 10 at a time, no more no less (infinitely)
+        constants: [ethers.utils.parseUnits(reserveClaimable, reserveDecimals)], // mint a set amount at a time (infinitely), if set to 10, will mint 10 at a time, no more no less (infinitely)
         sources: [
           ethers.utils.concat([
             rainSDK.utils.op(rainSDK.Sale.Opcodes.VAL, 0),
@@ -45,7 +45,7 @@ export async function deployToken(
     const emissionsErc20 = await rainSDK.EmissionsERC20.deploy(signer, emissionsERC20Config);
     // // todo claim function will mint another token (in addition to initial supply)??
     const emissionsERC20Address = emissionsErc20.address;
-    console.log(`Result: deployed emissionsErc20, with address: ${emissionsERC20Address} and sent you ${reserveInitialSupply} tokens.`, emissionsErc20);
+    console.log(`Result: deployed emissionsErc20, with address: ${emissionsERC20Address} and sent you ${reserveClaimable} tokens.`, emissionsErc20);
     console.log('Info: to see the tokens in your Wallet, add a new token with the address above. ALSO, REMEMBER TO NOTE DOWN THIS ADDRESS, AS IT WILL BE USED AS RESERVE_TOKEN IN FUTURE TUTORIALS.');
 
     // wait so subgraph has time to index

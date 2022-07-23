@@ -36,7 +36,7 @@ function App() {
   const [modalOpen, setModalOpen] = React.useState(false);
 
   // all these from .env will be replaced by calls to blockchain within the getTokenData function when faucetView is set to true
-  const [reserveInitialSupply, setReserveInitialSupply] = useState(process.env.REACT_APP_RESERVE_INITIAL_SUPPLY as string);
+  const [reserveClaimable, setReserveClaimable] = useState(process.env.REACT_APP_RESERVE_CLAIMABLE as string);
   const [reserveDecimals, setReserveDecimals] = useState(process.env.REACT_APP_RESERVE_ERC20_DECIMALS as string);
   const [reserveName, setReserveName] = React.useState(process.env.REACT_APP_RESERVE_NAME as string);
   const [reserveSymbol, setReserveSymbol] = React.useState(process.env.REACT_APP_RESERVE_SYMBOL as string);
@@ -46,7 +46,7 @@ function App() {
   // these must be the same as the above in .env
   function resetToDefault() {
     setReserveDecimals(process.env.REACT_APP_RESERVE_ERC20_DECIMALS as string);
-    setReserveInitialSupply(process.env.REACT_APP_RESERVE_INITIAL_SUPPLY as string);
+    setReserveClaimable(process.env.REACT_APP_RESERVE_CLAIMABLE as string);
     setReserveName(process.env.REACT_APP_RESERVE_NAME as string);
     setReserveSymbol(process.env.REACT_APP_RESERVE_SYMBOL as string);
   }
@@ -81,10 +81,16 @@ function App() {
     setReserveName(event.target.value);
   }
   const handleChangeReserveSymbol = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setReserveSymbol(event.target.value);
+    let newReserveSymbol = event.target.value;
+    if (newReserveSymbol.length > 11) { alert("Symbol must be 11 characters or less."); return;}
+    setReserveSymbol(newReserveSymbol);
   }
-  const handleChangeReserveInitialSupply = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setReserveInitialSupply(event.target.value);
+  const handleChangeReserveClaimable = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let newClaimable = event.target.value;
+    if (parseInt(newClaimable) > 1000) { alert("Can't have more than 1000 in this example."); return;}
+    if (parseInt(newClaimable) <= 0) { alert("Must be > 0."); return;}
+    // if (newClaimable == "") { alert("Must be > 0."); return;}
+    setReserveClaimable(newClaimable);
   }
 
   /** View **/
@@ -105,11 +111,11 @@ function App() {
               adminConfigPage={adminConfigPage} reserveName={reserveName}
               handleChangeReserveName={handleChangeReserveName} reserveSymbol={reserveSymbol}
               handleChangeReserveSymbol={handleChangeReserveSymbol}
-              reserveInitialSupply={reserveInitialSupply}
-              handleChangeReserveInitialSupply={handleChangeReserveInitialSupply} resetToDefault={resetToDefault}
+              reserveClaimable={reserveClaimable}
+              handleChangeReserveClaimable={handleChangeReserveClaimable} resetToDefault={resetToDefault}
               setAdminConfigPage={setAdminConfigPage} buttonLock={buttonLock}
               deployToken={() => deployToken(
-                signer, setButtonLock,setLoading,reserveName,reserveSymbol,account,reserveDecimals,reserveInitialSupply
+                signer, setButtonLock,setLoading,reserveName,reserveSymbol,account,reserveDecimals,reserveClaimable
               )}
             />
           }
@@ -122,7 +128,7 @@ function App() {
             <TokenView
               consoleData={consoleData} consoleColor={consoleColor}
               reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
-              reserveInitialSupply={reserveInitialSupply}
+              reserveClaimable={reserveClaimable}
               setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
               setTokenAddress={setTokenAddress} faucetView={faucetView} reserveBalance={reserveBalance}
               initiateClaim={() => initiateClaim(

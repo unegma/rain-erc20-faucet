@@ -20,7 +20,7 @@ type adminPanelProps = {
   adminConfigPage: number
   reserveName: string, handleChangeReserveName: any,
   reserveSymbol: string, handleChangeReserveSymbol: any,
-  reserveInitialSupply: any, handleChangeReserveInitialSupply: any,
+  reserveClaimable: any, handleChangeReserveClaimable: any,
   resetToDefault: any, setAdminConfigPage: any,
   buttonLock: any, deployToken: any
 }
@@ -29,7 +29,7 @@ export default function DeployPanelView({
   adminConfigPage,
   reserveName, handleChangeReserveName,
   reserveSymbol, handleChangeReserveSymbol,
-  reserveInitialSupply, handleChangeReserveInitialSupply,
+  reserveClaimable, handleChangeReserveClaimable,
   resetToDefault, setAdminConfigPage,
   buttonLock, deployToken,
   } : adminPanelProps)
@@ -100,11 +100,11 @@ export default function DeployPanelView({
             </FormControl>
 
             <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Amount a Faucet User will Receive</InputLabel>
+              <InputLabel className="input-box-label" htmlFor="component-helper">Amount a Faucet User will Receive Each Claim</InputLabel>
               <Input
                 id="component-helper"
-                value={reserveInitialSupply}
-                onChange={handleChangeReserveInitialSupply}
+                value={reserveClaimable}
+                onChange={handleChangeReserveClaimable}
                 endAdornment={<InputAdornment position="end">{reserveSymbol}</InputAdornment>}
               />
             </FormControl>

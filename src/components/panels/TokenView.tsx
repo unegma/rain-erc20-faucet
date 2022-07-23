@@ -14,13 +14,13 @@ const BASE_URL = process.env.REACT_APP_BASE_URL; // Mumbai (Polygon Testnet) Cha
 const GITHUB_LINK = process.env.REACT_APP_GITHUB_URL;
 
 type tokenViewProps = {
-  reserveName: string, reserveSymbol: string, modalOpen: any, setModalOpen: any, reserveInitialSupply: any,
+  reserveName: string, reserveSymbol: string, modalOpen: any, setModalOpen: any, reserveClaimable: any,
   buttonLock: any, tokenAddress: string, consoleColor: any, consoleData: any, initiateClaim: any, setTokenAddress: any,
   faucetView: any, reserveBalance: string
 }
 
 export default function TokenView({
-    reserveName, reserveSymbol, modalOpen, setModalOpen, reserveInitialSupply, buttonLock, tokenAddress,
+    reserveName, reserveSymbol, modalOpen, setModalOpen, reserveClaimable, buttonLock, tokenAddress,
     consoleData, consoleColor, initiateClaim, setTokenAddress, faucetView, reserveBalance
   }: tokenViewProps )
 {
