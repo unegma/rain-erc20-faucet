@@ -66,7 +66,7 @@ export async function deployToken(
  * THIS MUST NOT BE SHOWN BEFORE getSaleData() HAS FINISHED OR THE DATA WILL BE FROM .ENV
  */
 export async function initiateClaim(
-  signer: any, setButtonLock: any, setLoading: any, account: string, setConsoleData: any, setConsoleColor: any, tokenAddress: string
+  signer: any, setButtonLock: any, setLoading: any, account: string, setConsoleData: any, setConsoleColor: any, tokenAddress: string, setClaimComplete: any
 ) {
   try {
     if (account === "" || typeof account === 'undefined') {
@@ -87,6 +87,7 @@ export async function initiateClaim(
 
     setConsoleData(`Complete!`);
     setConsoleColor(`green`); // todo add to struct
+    setClaimComplete(true);
     //   setButtonLock(false); // don't set to true to disincentive users from continuing to click it
     setLoading(false);
   } catch(err) {

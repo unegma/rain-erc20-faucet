@@ -27,6 +27,7 @@ function App() {
   const [tokenAddress, setTokenAddress] = React.useState(""); // this is now retrieved from the url
   const [consoleData, setConsoleData] = React.useState("");
   const [consoleColor, setConsoleColor] = React.useState('red');
+  const [claimComplete, setClaimComplete] = React.useState(false); // used to update user balance when complete
 
   // page controls
   const [buttonLock, setButtonLock] = useState(false);
@@ -73,7 +74,7 @@ function App() {
     if (signer && faucetView) {
       getReserveBalance(signer,account,tokenAddress,setReserveBalance);
     }
-  }, [signer, account, tokenAddress])
+  }, [signer, account, tokenAddress, claimComplete])
 
   /** Handle Form Inputs **/
 
@@ -133,7 +134,7 @@ function App() {
               setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
               setTokenAddress={setTokenAddress} faucetView={faucetView} reserveBalance={reserveBalance}
               initiateClaim={() => initiateClaim(
-                signer, setButtonLock,setLoading,account,setConsoleData,setConsoleColor, tokenAddress
+                signer, setButtonLock,setLoading,account,setConsoleData,setConsoleColor, tokenAddress, setClaimComplete
               )}
             />
           }
