@@ -45,7 +45,7 @@ export async function deployToken(
     const emissionsErc20 = await rainSDK.EmissionsERC20.deploy(signer, emissionsERC20Config);
     // // todo claim function will mint another token (in addition to initial supply)??
     const emissionsERC20Address = emissionsErc20.address;
-    console.log(`Result: deployed emissionsErc20, with address: ${emissionsERC20Address} and sent you ${reserveClaimable} tokens.`, emissionsErc20);
+    console.log(`Result: deployed emissionsErc20, with address: ${emissionsERC20Address}.`, emissionsErc20);
     console.log('Info: to see the tokens in your Wallet, add a new token with the address above. ALSO, REMEMBER TO NOTE DOWN THIS ADDRESS, AS IT WILL BE USED AS RESERVE_TOKEN IN FUTURE TUTORIALS.');
 
     // wait so subgraph has time to index
