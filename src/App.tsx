@@ -42,7 +42,7 @@ function App() {
   const [reserveName, setReserveName] = React.useState(process.env.REACT_APP_RESERVE_NAME as string);
   const [reserveSymbol, setReserveSymbol] = React.useState(process.env.REACT_APP_RESERVE_SYMBOL as string);
 
-  const [reserveBalance, setReserveBalance] = React.useState("");
+  const [reserveBalance, setReserveBalance] = React.useState("?");
 
   // these must be the same as the above in .env
   function resetToDefault() {
