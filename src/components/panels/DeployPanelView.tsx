@@ -38,7 +38,7 @@ export default function DeployPanelView({
   return (
     <>
       <NavBar />
-      <p className='github'><a href={`${GITHUB_LINK}`} target="_blank">(Github Link)</a></p>
+      <p className={'github github--firstview'}><a href={`${GITHUB_LINK}`} target="_blank">(Github Link)</a></p>
 
       <Box
         className="admin-form"
