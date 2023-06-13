@@ -70,7 +70,7 @@ export default function DeployPanelView({
           <directionalLight intensity={0.01} position={[5, 25, 20]} />
           <Suspense fallback={<Html className="black">loading..</Html>}>
             <ReserveToken rotation={[1,1,1]} reserveSymbol={reserveSymbol} />
-            <Environment preset="studio" />
+            <Environment files="https://assets.unegma.net/shared/threejs-environments/studio.hdr"/>
           </Suspense>
           <OrbitControls autoRotate autoRotateSpeed={1} enableZoom={false} enablePan={false} enableRotate={false} />
         </Canvas>
